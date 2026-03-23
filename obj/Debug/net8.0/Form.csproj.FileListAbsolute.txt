@@ -91,3 +91,4 @@ C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Owin.Security.O
 C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Owin.dll
 C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Identity.Web.GraphServiceClient.dll
+C:\Users\mmokrzycki\source\repos\Form\obj\Debug\net8.0\Form.sourcelink.json

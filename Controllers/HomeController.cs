@@ -91,7 +91,9 @@ namespace Form.Controllers
 
             var rootItem = await _graphClient.Drives[driveId].Root.GetAsync();
 
-            var file = await _graphClient.Drives[driveId].Root.ItemWithPath("TestFolder/TestFile.txt").GetAsync();
+            var file = await _graphClient.Drives[driveId].Root.ItemWithPath("Desktop/FM-2001.docx").GetAsync();
+
+            ViewBag.word = file.WebUrl;
 
             return View(viewModel);
         }

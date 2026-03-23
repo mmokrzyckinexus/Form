@@ -9,30 +9,39 @@
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-<h2>Name: @(Model.User.GivenName)</h2>
-@if (Model.Manager is Microsoft.Graph.Models.User user)
-{
-    <h2>Name: @(user.DisplayName), upn: @(user.UserPrincipalName)</h2>
-}
-else if (Model.Manager is OrgContact oc)
-{
-    <h2>NameOC: @(oc.DisplayName), @(oc.Mail)</h2>
-}
-else
-{
-    <p>Manager is not a user or org contact.</p>
-}
+<div style="display:flex; height:90vh; gap:12px;">
 
-<ol>
-    @foreach (var directReport in Model.DirectReports)
+    <iframe
+        src="@ViewBag.word"
+        style="width:100%; height:100%; border:none;">
+    </iframe>
+
+    <h2>Name: @(Model.User.GivenName)</h2>
+    @if (Model.Manager is Microsoft.Graph.Models.User user)
     {
-        if (directReport is Microsoft.Graph.Models.User drUser)
-        {
-            <li style="color: black;">Name: @(drUser.DisplayName), upn: @(drUser.UserPrincipalName)</li>
-        }
-        else
-        {
-            <li>Direct report is not a user or org contact.</li>
-        }
+        <h2>Name: @(user.DisplayName), upn: @(user.UserPrincipalName)</h2>
     }
-</ol>
+    else if (Model.Manager is OrgContact oc)
+    {
+        <h2>NameOC: @(oc.DisplayName), @(oc.Mail)</h2>
+    }
+    else
+    {
+        <p>Manager is not a user or org contact.</p>
+    }
+
+    <ol>
+        @foreach (var directReport in Model.DirectReports)
+        {
+            if (directReport is Microsoft.Graph.Models.User drUser)
+            {
+                <li style="color: black;">Name: @(drUser.DisplayName), upn: @(drUser.UserPrincipalName)</li>
+            }
+            else
+            {
+                <li>Direct report is not a user or org contact.</li>
+            }
+        }
+    </ol>
+
+</div>
