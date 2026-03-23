@@ -1,0 +1,38 @@
+﻿@using Microsoft.Graph.Models
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model Form.Models.AzureUserViewModel
+
+<div class="text-center">
+    <h1 class="display-1">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<h2>Name: @(Model.User.GivenName)</h2>
+@if (Model.Manager is Microsoft.Graph.Models.User user)
+{
+    <h2>Name: @(user.DisplayName), upn: @(user.UserPrincipalName)</h2>
+}
+else if (Model.Manager is OrgContact oc)
+{
+    <h2>NameOC: @(oc.DisplayName), @(oc.Mail)</h2>
+}
+else
+{
+    <p>Manager is not a user or org contact.</p>
+}
+
+<ol>
+    @foreach (var directReport in Model.DirectReports)
+    {
+        if (directReport is Microsoft.Graph.Models.User drUser)
+        {
+            <li style="color: black;">Name: @(drUser.DisplayName), upn: @(drUser.UserPrincipalName)</li>
+        }
+        else
+        {
+            <li>Direct report is not a user or org contact.</li>
+        }
+    }
+</ol>

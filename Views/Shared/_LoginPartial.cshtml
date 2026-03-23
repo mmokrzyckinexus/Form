@@ -1,0 +1,29 @@
+﻿@using System.Security.Principal
+
+<ul class="nav-bar">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p class="nav-link text-dark">
+            Hello @User.FindFirst("givenname")
+        </p>
+        <a class="nav-link text-dark" asp-area="microsoftidentity" asp-controller="account" asp-action="signout">
+                sign out
+        </a>
+        <li class="nav-item">
+            <small class="text-muted">
+                @foreach (var c in User.Claims)
+                {
+                    <p>@c.Type: @c.Value</p>
+                }
+            </small>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="microsoftidentity" asp-controller="account" asp-action="signout">
+                sign in
+            </a>
+        </li>
+    }
+</ul>
