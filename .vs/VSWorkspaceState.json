@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "ExpandedNodes": [
     "",
@@ -5,4 +6,13 @@
   ],
   "SelectedNode": "\\Form.slnx",
   "PreviewInSolutionExplorer": false
+=======
+{
+  "ExpandedNodes": [
+    "",
+    "\\Controllers"
+  ],
+  "SelectedNode": "\\Form.slnx",
+  "PreviewInSolutionExplorer": false
+>>>>>>> 13bb184fa9fa64e7642ec2662e0a3f7a99996215
 }
