@@ -86,15 +86,6 @@ namespace Form.Controllers
                 DirectReports = directReportsList
             };
 
-            var item = await _graphClient.Me.Drive.GetAsync();
-            var driveId = item.Id;
-
-            var rootItem = await _graphClient.Drives[driveId].Root.GetAsync();
-
-            var file = await _graphClient.Drives[driveId].Root.ItemWithPath("Desktop/FM-2001.docx").GetAsync();
-
-            ViewBag.word = file.WebUrl;
-
             return View(viewModel);
         }
 
