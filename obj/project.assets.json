@@ -3143,23 +3143,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mmokrzycki\\.nuget\\packages\\": {},
+    "C:\\Users\\mattm\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mmokrzycki\\source\\repos\\Form\\Form.csproj",
+      "projectUniqueName": "D:\\coding\\github\\Form\\Form.csproj",
       "projectName": "Form",
-      "projectPath": "C:\\Users\\mmokrzycki\\source\\repos\\Form\\Form.csproj",
-      "packagesPath": "C:\\Users\\mmokrzycki\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mmokrzycki\\source\\repos\\Form\\obj\\",
+      "projectPath": "D:\\coding\\github\\Form\\Form.csproj",
+      "packagesPath": "C:\\Users\\mattm\\.nuget\\packages\\",
+      "outputPath": "D:\\coding\\github\\Form\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\mmokrzycki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mattm\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3168,6 +3168,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
