@@ -11,7 +11,10 @@ using Microsoft.Kiota.Abstractions;
 using Microsoft.Graph.Authentication;
 using Microsoft.Kiota.Abstractions.Authentication;*/
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions {
+    ContentRootPath = Directory.GetCurrentDirectory(),
+    WebRootPath = "static"
+});
 
 // Sign-in users with the Microsoft identity platform
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme).AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAD")).EnableTokenAcquisitionToCallDownstreamApi().AddMicrosoftGraph(builder.Configuration.GetSection("Graph")).AddInMemoryTokenCaches();
