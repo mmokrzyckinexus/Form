@@ -29,9 +29,10 @@ namespace Form.Controllers
         [AuthorizeForScopes(ScopeKeySection = "Graph:Scopes")]
         public async Task<IActionResult> Index()
         {
-            var user = await _graphClient.Me.GetAsync(requestConfiguration => {
-                requestConfiguration.QueryParameters.Select = new[] 
-                { 
+            var user = await _graphClient.Me.GetAsync(requestConfiguration =>
+            {
+                requestConfiguration.QueryParameters.Select = new[]
+                {
                     "displayName",
                     "givenName",
                     "mail",
@@ -64,7 +65,7 @@ namespace Form.Controllers
             var directReport = await _graphClient.Me.DirectReports.GetAsync(requestConfiguration =>
             {
                 requestConfiguration.QueryParameters.Select = new[]
-                { 
+                {
                     "id",
                     "displayName",
                     "userPrincipalName"
@@ -103,6 +104,85 @@ namespace Form.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public class QuestionAnswer
+        {
+            public string Label { get; set; }
+            public string Target { get; set; }
+            public string Value { get; set; }
+        }
+
+        public class PreviewRequest
+        {
+            public string Subject { get; set; }
+            public string DirectReportId { get; set; }
+            public List<QuestionAnswer> Questions { get; set; } = new();
+            public string Filename { get; set; }
+        }
+
+        public class PreviewViewModel
+        {
+            public string Subject { get; set; }
+            public string Name { get; set; }
+            public string Email { get; set; }
+            public string Bio { get; set; }
+        }
+
+        [HttpPost]
+        [Route("Home/Preview")]
+        public async Task<IActionResult> Preview([FromBody] PreviewRequest request)
+        {
+            string baseLineFirst = string.Empty, baseLineLast = string.Empty, baseLineEmail = string.Empty;
+
+            if (request?.Subject == "direct" && !string.IsNullOrEmpty(request.DirectReportId))
+            {
+                try
+                {
+                    var directReport = await _graphClient.Users[request.DirectReportId].GetAsync(config =>
+                    {
+                        config.QueryParameters.Select = new[]
+                        {
+                            "displayName",
+                            "givenName",
+                            "mail",
+                            "userPrincipalName",
+                            "surname"
+                        };
+                    });
+
+                    if (directReport != null)
+                    {
+                        baseLineFirst = directReport.GivenName;
+                        baseLineLast = directReport.Surname;
+                        baseLineEmail = directReport.UserPrincipalName ?? directReport.Mail;
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error fetching direct report information for ID: {DirectReportId}", request.DirectReportId);
+                }
+            }
+
+            if (string.IsNullOrEmpty(baseLineFirst) && string.IsNullOrEmpty(baseLineLast) && string.IsNullOrEmpty(baseLineEmail))
+            {
+                var currentUser = await _graphClient.Me.GetAsync(config =>
+                {
+                    config.QueryParameters.Select = new[]
+                    {
+                        "displayName",
+                        "givenName",
+                        "mail",
+                        "userPrincipalName",
+                        "surname"
+                    };
+                });
+
+                baseLineFirst = !string.IsNullOrEmpty(baseLineFirst) ? baseLineFirst : currentUser.GivenName;
+                baseLineLast = !string.IsNullOrEmpty(baseLineLast) ? baseLineLast : currentUser.Surname;
+                baseLineEmail = !string.IsNullOrEmpty(baseLineEmail) ? baseLineEmail : (currentUser.UserPrincipalName ?? currentUser.Mail);
+            }
         }
     }
 }

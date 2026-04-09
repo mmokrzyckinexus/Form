@@ -61,12 +61,9 @@
                     else
                     {
                         <select id="directReportSelect" class="form-select mt-2" disabled>
-                            <option value="">-- choose direct report --</option>
-                            @foreach (var directReport in Model.DirectReports ?? Enumerable.Empty<User>())
-                            {
-                                var email = directReport.UserPrincipalName ?? "";
-                                <option value="@directReport.Id" data-display="@directReport.DisplayName" data-email="@email">@directReport.DisplayName (@(string.IsNullOrEmpty(email) ? "no-email" : email))</option>
-                            }
+                            <!--<option value="">-- choose direct report --</option>-->
+                            @{var email = Model.User.UserPrincipalName ?? "";}
+                            <option value="@Model.User.Id" data-display="@Model.User.DisplayName" data-email="@email">@Model.User.DisplayName (@(string.IsNullOrEmpty(email) ? "no-email" : email))</option>
                         </select>
                     }
                 </div>
@@ -104,6 +101,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <div class="col-md-7" style="overflow:auto;">
         <div id="previewWrapper" class="card d-none">
