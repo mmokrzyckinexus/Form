@@ -8,9 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Graph" Version="5.103.0" />
-    <PackageReference Include="Microsoft.Identity.Web" Version="4.6.0" />
-    <PackageReference Include="Microsoft.Identity.Web.GraphServiceClient" Version="4.6.0" />
-    <PackageReference Include="Microsoft.Identity.Web.UI" Version="4.6.0" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="4.7.0" />
+    <PackageReference Include="Microsoft.Identity.Web.GraphServiceClient" Version="4.7.0" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="4.7.0" />
     <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="8.17.0" />
     <PackageReference Include="Microsoft.Owin" Version="4.2.3" />
     <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="4.2.3" />
