@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Form")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< Updated upstream
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f1dff46f42db48bf06e76c740695a7aa880a8bc8")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3dc5976fe4e9428d7f90ab9bf57ca41a2e12b750")]
+>>>>>>> Stashed changes
 [assembly: System.Reflection.AssemblyProductAttribute("Form")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Form")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
