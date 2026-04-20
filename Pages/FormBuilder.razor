@@ -1,5 +1,5 @@
 ﻿@using System.Text.Json
-@inject IHttpClientFactory HttpClientFactory
+@inject IHttpClientFactory HttpFactory
 
 <h3>FormBuilder</h3>
 
@@ -55,5 +55,46 @@
 
             questions = new List<Question>();
         }
+    }
+
+    void AddQuestion()
+    {
+        questions.Add(new Question
+        { 
+            Label = "New Question",
+            Target = "firstName"
+        });
+    }
+
+    void RemoveQuestion(Question question) => questions.Remove(question);
+
+    void SetSubject(string subject)
+    {
+        currentSubject = subject;
+        if (subject == "self") selectedDirectReport = null;
+    }
+
+    void SetDirectReport(ChangeEventArgs eventArgs)
+    {
+        var id = eventArgs.Value?.ToString();
+        if (string.IsNullOrEmpty(id))
+        { 
+            selectedDirectReport = null;
+            return;
+        }
+        selectedDirectReport = directReports.FirstOrDefault(directReport => directReport.TryGetProperty("id", out var idProperty) && idProperty.GetString() == id);
+    }
+
+    async Task FetchServerPreviewAsync()
+    {
+        var client = HttpFactory.CreateClient("server");
+        var payload = new PreviewRequest
+        {
+            Subject = currentSubject,
+            DirectReportId = selectedDirectReport.HasValue && selectedDirectReport.Value.TryGetProperty("id", out var idProperty) ? idProperty.GetString() : null,
+            Questions = questions
+        };
+
+        var response = await client.PostAsJsonAsync("/Home/Preview", payload);
     }
 }

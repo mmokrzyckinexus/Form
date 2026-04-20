@@ -58,21 +58,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 202,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FormBuilder.razor",
-              "DocumentMoniker": "D:\\coding\\github\\Form\\Pages\\FormBuilder.razor",
-              "RelativeDocumentMoniker": "Pages\\FormBuilder.razor",
-              "ToolTip": "D:\\coding\\github\\Form\\Pages\\FormBuilder.razor",
-              "RelativeToolTip": "Pages\\FormBuilder.razor",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAADcAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-20T00:29:19.69Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -87,6 +74,19 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FormBuilder.razor",
+              "DocumentMoniker": "D:\\coding\\github\\Form\\Pages\\FormBuilder.razor",
+              "RelativeDocumentMoniker": "Pages\\FormBuilder.razor",
+              "ToolTip": "D:\\coding\\github\\Form\\Pages\\FormBuilder.razor",
+              "RelativeToolTip": "Pages\\FormBuilder.razor",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAAGEAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-20T00:29:19.69Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 5,
               "Title": "FormPreview.cshtml",
               "DocumentMoniker": "D:\\coding\\github\\Form\\Views\\Home\\FormPreview.cshtml",
@@ -95,8 +95,7 @@
               "RelativeToolTip": "Views\\Home\\FormPreview.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-12T01:47:50.047Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-12T01:47:50.047Z"
             },
             {
               "$type": "Document",
@@ -108,8 +107,7 @@
               "RelativeToolTip": "Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-20T21:13:53.592Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-20T21:13:53.592Z"
             },
             {
               "$type": "Document",
@@ -121,8 +119,7 @@
               "RelativeToolTip": "Models\\ErrorViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-23T04:20:34.042Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-23T04:20:34.042Z"
             },
             {
               "$type": "Document",
@@ -134,8 +131,7 @@
               "RelativeToolTip": "Controllers\\HomeController.cs",
               "ViewState": "AgIAABgBAAAAAAAAAAAAACsAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T15:29:25.635Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-04T15:29:25.635Z"
             },
             {
               "$type": "Document",
@@ -147,8 +143,7 @@
               "RelativeToolTip": "Models\\AzureUserViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T15:34:46.624Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-22T15:34:46.624Z"
             },
             {
               "$type": "Document",
@@ -160,8 +155,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T23:48:39.826Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-19T23:48:39.826Z"
             },
             {
               "$type": "Document",
