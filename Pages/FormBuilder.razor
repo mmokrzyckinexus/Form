@@ -1,0 +1,59 @@
+﻿@using System.Text.Json
+@inject IHttpClientFactory HttpClientFactory
+
+<h3>FormBuilder</h3>
+
+@code {
+    class Question
+    {
+        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public string Label { get; set; } = string.Empty;
+        public string Target { get; set; } = "firstName";
+        public string Value { get; set; } = string.Empty;
+    }
+
+    class PreviewRequest
+    {
+        public string Subject { get; set; } = "self";
+        public string DirectReportId { get; set; } = string.Empty;
+        public List<Question> Questions { get; set; } = new();
+        public string FileName { get; set; } = string.Empty;
+    }
+
+    class PreviewViewModel
+    {
+        public string Subject { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Bio { get; set; }
+    }
+
+    [Parameter] public string DirectReportJason { get; set; } = "[]";
+    [Parameter] public string UserGivenName { get; set; } = string.Empty;
+    [Parameter] public string UserSurname { get; set; } = string.Empty;
+    [Parameter] public string UserEmail { get; set; } = string.Empty;
+
+    List<Question> questions = new();
+    List<JsonElement> directReports = new();
+    string currentSubject = "self";
+    JsonElement? selectedDirectReport = null;
+    PreviewViewModel serverPreview = null;
+    string saveFilename = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        if (!string.IsNullOrEmpty(DirectReportJason))
+        {
+            try
+            {
+                directReports = JsonSerializer.Deserialize<List<JsonElement>>(DirectReportJason);
+            }
+            catch
+            {
+                directReports = new();
+            }
+
+            questions = new List<Question>();
+        }
+    }
+}
