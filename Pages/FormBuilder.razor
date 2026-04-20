@@ -1,0 +1,100 @@
+﻿@using System.Text.Json
+@inject IHttpClientFactory HttpFactory
+
+<h3>FormBuilder</h3>
+
+@code {
+    class Question
+    {
+        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public string Label { get; set; } = string.Empty;
+        public string Target { get; set; } = "firstName";
+        public string Value { get; set; } = string.Empty;
+    }
+
+    class PreviewRequest
+    {
+        public string Subject { get; set; } = "self";
+        public string DirectReportId { get; set; } = string.Empty;
+        public List<Question> Questions { get; set; } = new();
+        public string FileName { get; set; } = string.Empty;
+    }
+
+    class PreviewViewModel
+    {
+        public string Subject { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Bio { get; set; }
+    }
+
+    [Parameter] public string DirectReportJason { get; set; } = "[]";
+    [Parameter] public string UserGivenName { get; set; } = string.Empty;
+    [Parameter] public string UserSurname { get; set; } = string.Empty;
+    [Parameter] public string UserEmail { get; set; } = string.Empty;
+
+    List<Question> questions = new();
+    List<JsonElement> directReports = new();
+    string currentSubject = "self";
+    JsonElement? selectedDirectReport = null;
+    PreviewViewModel serverPreview = null;
+    string saveFilename = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        if (!string.IsNullOrEmpty(DirectReportJason))
+        {
+            try
+            {
+                directReports = JsonSerializer.Deserialize<List<JsonElement>>(DirectReportJason);
+            }
+            catch
+            {
+                directReports = new();
+            }
+
+            questions = new List<Question>();
+        }
+    }
+
+    void AddQuestion()
+    {
+        questions.Add(new Question
+        { 
+            Label = "New Question",
+            Target = "firstName"
+        });
+    }
+
+    void RemoveQuestion(Question question) => questions.Remove(question);
+
+    void SetSubject(string subject)
+    {
+        currentSubject = subject;
+        if (subject == "self") selectedDirectReport = null;
+    }
+
+    void SetDirectReport(ChangeEventArgs eventArgs)
+    {
+        var id = eventArgs.Value?.ToString();
+        if (string.IsNullOrEmpty(id))
+        { 
+            selectedDirectReport = null;
+            return;
+        }
+        selectedDirectReport = directReports.FirstOrDefault(directReport => directReport.TryGetProperty("id", out var idProperty) && idProperty.GetString() == id);
+    }
+
+    async Task FetchServerPreviewAsync()
+    {
+        var client = HttpFactory.CreateClient("server");
+        var payload = new PreviewRequest
+        {
+            Subject = currentSubject,
+            DirectReportId = selectedDirectReport.HasValue && selectedDirectReport.Value.TryGetProperty("id", out var idProperty) ? idProperty.GetString() : null,
+            Questions = questions
+        };
+
+        var response = await client.PostAsJsonAsync("/Home/Preview", payload);
+    }
+}

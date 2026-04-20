@@ -1,0 +1,18 @@
+﻿@model Form.Controllers.HomeController.PreviewViewModel
+@{
+    ViewData["Title"] = "Form Preview";
+}
+<div class="card" id="serverPreviewFragment">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <div><strong>Preview (server)</strong></div>
+        <div><small class="text-muted">Subject: @Model.Subject</small></div>
+    </div>
+    <div class="card-body">
+        <h3>@(string.IsNullOrWhiteSpace(Model.Name) ? "No Name Provided" : Model.Name)</h3>
+        <p><strong>Email:</strong> @(string.IsNullOrWhiteSpace(Model.Email) ? "No Email Provided" : Model.Email)</p>
+        <p><strong>Summary:</strong></p>
+        <div class="border p-2" style="min-height:80px;">
+            @(string.IsNullOrWhiteSpace(Model.Bio) ? "No Bio Provided" : Model.Bio)
+        </div>
+    </div>
+</div>
