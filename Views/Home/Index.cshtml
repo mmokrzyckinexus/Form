@@ -23,6 +23,12 @@
     <p>Ask custom questions on the left. Answers map to fields on the preview form on the right (unsaved).</p>
 </div>
 
+<component type="typeof(Form.Pages.FormBuilder)" render-mode="ServerPrerendered"
+           param-DirectReportJason="@directReportsJson"
+           param-UserGivenName="@currentdirectReportGivenName"
+           param-UserSurname="@currentdirectReportSurName"
+           param-UserEmail="@currentdirectReportEmail" />
+
 <div class="row g-3" style="height:75vh;">
     <div class="col-md-5" style="overflow:auto;">
         <div class="card">
