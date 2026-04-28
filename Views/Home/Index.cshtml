@@ -67,9 +67,12 @@
                     else
                     {
                         <select id="directReportSelect" class="form-select mt-2" disabled>
-                            <!--<option value="">-- choose direct report --</option>-->
-                            @{var email = Model.User.UserPrincipalName ?? "";}
-                            <option value="@Model.User.Id" data-display="@Model.User.DisplayName" data-email="@email">@Model.User.DisplayName (@(string.IsNullOrEmpty(email) ? "no-email" : email))</option>
+                            <option value="">-- choose direct report --</option>
+                            @foreach (var directReport in Model.DirectReports ?? Enumerable.Empty<User>())
+                            {
+                                var email = directReport.UserPrincipalName ?? "";
+                                <option value="@directReport.Id" data-display="@directReport.DisplayName" data-email="@email">@directReport.DisplayName (@(string.IsNullOrEmpty(email) ? "no-email" : email))</option>
+                            }
                         </select>
                     }
                 </div>
@@ -104,131 +107,130 @@
                 <div class="d-flex gap-2">
                     <button id="btnResetQuestions" class="btn btn-secondary">Reset questions</button>
                     <button id="btnClearAnswers" class="btn btn-outline-secondary">Clear answers</button>
+                </div>
+            </div>
+        </div>
 
-                    <button class="btn btn-primary ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#previewOffcanvas" aria-controls="previewOffcanvas">Preview</button>
+        <div class="col-md-7" style="overflow:auto;">
+            <div id="previewWrapper" class="card d-none">
+                <div class="card-header">
+                    <strong>Live Preview (changes not saved)</strong>
+                    <span id="unsavedDot" class="badge bg-warning text-dark ms-2">Unsaved</span>
+                </div>
+                <div class="card-body">
+                    <h3 id="previewName"></h3>
+                    <p><strong>Email:</strong> <span id="previewEmail"></span></p>
+                    <p><strong>Summary:</strong></p>
+                    <div id="previewBio" class="border rounded p-2" style="min-height:80px;"></div>
+        
+                    <div id="docPreview" class="mt-3" style="height:50vh;">
+                        <!--<iframe id="wordFrame" src="@ViewBag.word" style="width:100%; height:100%; border:1px solid #ddd; display:none"></iframe>-->
+                    </div>
+                </div>
+            </div>
+        
+            <div id="emptyPlaceholder" class="card text-muted text-center p-5">
+                <div class="card-body">
+                    <p class="mb-0">Preview will appear as you start typing in the form.</p>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="previewOffcanvas" aria-labelledby="previewOffcanvasLabel" style="width:520px;">
-        <div class="offcanvas-header">
-            <h5 id="previewOffcanvasLabel">Preview (server)</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body d-flex flex-column" id="previewOffcanvasBody">
-            <!-- server preview will be injected here -->
-            <div class="text-muted mb-3">Click Preview to load server-rendered preview. Use Save to persist, or Cancel to close.</div>
-
-            <div id="previewOffcanvasFooter" class="mt-auto d-flex gap-2">
-                <input id="saveFilename" class="form-control form-control-sm" placeholder="File name (optional)" />
-                <button id="btnSaveToDrive" class="btn btn-success">Save</button>
-                <button id="btnCancelPreview" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
-            </div>
-        </div>
-    </div>
+</div>
 
 @section Scripts {
     <script>
         (function () {
-            // existing client code to build questions, subject, direct report selection...
-            // (keep your previous initialization code)
-            const directReports = @Html.Raw(directReportsJson);
+            const firstName = document.getElementById('firstName');
+            const lastName = document.getElementById('lastName');
+            const email = document.getElementById('email');
+            const bio = document.getElementById('bio');
+            const previewWrapper = document.getElementById('previewWrapper');
+            const emptyPlaceholder = document.getElementById('emptyPlaceholder');
+            const previewName = document.getElementById('previewName');
+            const previewEmail = document.getElementById('previewEmail');
+            const previewBio = document.getElementById('previewBio');
+            const wordFrame = document.getElementById('wordFrame');
+            const includeIframe = document.getElementById('includeIframe');
+            const btnSave = document.getElementById('btnSave');
+            const btnReset = document.getElementById('btnReset');
 
-            // state mirrors server
-            let questions = []; // keep in sync with your UI
-            let currentSubject = 'self';
-            let selectedDirectReport = null;
+            // Flag to show preview only after first typing
+            let hasTyped = false;
 
-            // helper to gather payload to send to server for preview/save
-            function buildPayload() {
-                return {
-                    subject: currentSubject,
-                    directReportId: selectedDirectReport ? selectedDirectReport.id : null,
-                    questions: questions.map(q => ({ label: q.label, target: q.target, value: q.value })),
-                    filename: document.getElementById('saveFilename')?.value
-                };
-            }
-
-            // Wire Preview button (already exists in your UI as btnPreview)
-            const btnPreview = document.getElementById('btnPreview');
-            const previewOffcanvasBody = document.getElementById('previewOffcanvasBody');
-
-            async function fetchServerPreview() {
-                const payload = buildPayload();
-
-                try {
-                    const res = await fetch('/Home/Preview', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    if (!res.ok) {
-                        const txt = await res.text();
-                        console.error('Preview failed', res.status, txt);
-                        alert('Preview generation failed.');
-                        return;
-                    }
-
-                    const html = await res.text();
-                    // inject the preview HTML (keep the footer controls visible)
-                    // replace only the top portion of previewOffcanvasBody, keep footer
-                    const footer = document.getElementById('previewOffcanvasFooter');
-                    previewOffcanvasBody.innerHTML = html;
-                    previewOffcanvasBody.appendChild(footer);
-
-                    const offcanvasEl = document.getElementById('previewOffcanvas');
-                    const offcanvas = new bootstrap.Offcanvas(offcanvasEl);
-                    offcanvas.show();
-                } catch (err) {
-                    console.error(err);
-                    alert('Preview request failed (network).');
+            function showPreviewIfNeeded() {
+                if (!hasTyped) {
+                    previewWrapper.classList.remove('d-none');
+                    emptyPlaceholder.classList.add('d-none');
+                    hasTyped = true;
+                    btnSave.disabled = false;
                 }
             }
 
-            if (btnPreview) btnPreview.addEventListener('click', () => fetchServerPreview());
+            function updatePreview() {
+                showPreviewIfNeeded();
 
-            // Save button inside offcanvas
-            const btnSaveToDrive = document.getElementById('btnSaveToDrive');
-            if (btnSaveToDrive) {
-                btnSaveToDrive.addEventListener('click', async () => {
-                    const payload = buildPayload();
-                    try {
-                        const res = await fetch('/Home/Save', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
+                const f = firstName.value.trim();
+                const l = lastName.value.trim();
+                previewName.textContent = (f || l) ? `${f} ${l}`.trim() : 'No name provided';
+                previewEmail.textContent = email.value.trim() || 'No email provided';
+                previewBio.textContent = bio.value.trim() || '(empty)';
 
-                        const json = await res.json();
-                        if (!res.ok || !json?.success) {
-                            console.error('Save failed', json);
-                            alert('Save failed.');
-                            return;
-                        }
-
-                        // show success and link if available
-                        const successMsg = document.createElement('div');
-                        successMsg.className = 'alert alert-success mt-2';
-                        successMsg.innerHTML = 'Saved successfully. ' + (json.webUrl ? `<a target="_blank" href="${json.webUrl}">Open file</a>` : '');
-                        // append to offcanvas body (or replace)
-                        document.getElementById('previewOffcanvasBody').appendChild(successMsg);
-
-                        // optionally disable Save to prevent duplicates
-                        btnSaveToDrive.disabled = true;
-                    } catch (err) {
-                        console.error(err);
-                        alert('Save request failed (network).');
-                    }
-                });
+                if (includeIframe && includeIframe.checked) {
+                    wordFrame.style.display = '';
+                } else {
+                    wordFrame.style.display = 'none';
+                }
             }
 
-            // Cancel button simply closes the offcanvas (Bootstrap data attribute handles it)
+            // Wire up events
+            [firstName, lastName, email, bio].forEach(el => {
+                el.addEventListener('input', updatePreview);
+            });
 
-            // NOTE: keep your existing question UI code to push/pop `questions`, set `currentSubject`, and set `selectedDirectReport`.
-            // The buildPayload() function reads from those variables.
-    })();
+            includeIframe.addEventListener('change', () => {
+                if (hasTyped) updatePreview();
+            });
+
+            btnReset.addEventListener('click', () => {
+                // reset to values that were prefilled initially (server-provided)
+                firstName.value = '@(Model?.User?.GivenName ?? "")';
+                lastName.value = '@(Model?.User?.Surname ?? "")';
+                email.value = '@(Model?.User?.Mail ?? Model?.User?.UserPrincipalName ?? "")';
+                bio.value = '';
+                // hide preview until user types again
+                previewWrapper.classList.add('d-none');
+                emptyPlaceholder.classList.remove('d-none');
+                hasTyped = false;
+                btnSave.disabled = true;
+                wordFrame.style.display = includeIframe.checked ? '' : 'none';
+            });
+
+            // Optional: Save handler (currently just disables state; implement server save if needed)
+            btnSave.addEventListener('click', () => {
+                btnSave.disabled = true;
+                // show a quick saved indicator
+                const savedBadge = document.createElement('span');
+                savedBadge.className = 'badge bg-success ms-2';
+                savedBadge.innerText = 'Saved (demo)';
+                document.querySelector('#previewWrapper .card-header').appendChild(savedBadge);
+                setTimeout(() => {
+                    if (savedBadge.parentNode) savedBadge.remove();
+                    btnSave.disabled = false;
+                }, 1500);
+            });
+
+            // If the user has already prefilled values, show a preview when they focus or type
+            // (don't show automatically on page load)
+            // But if any value is non-empty and different from server-provided, show preview
+            const initialFirst = '@(Model?.User?.GivenName ?? "")';
+            const initialLast = '@(Model?.User?.Surname ?? "")';
+            const initialEmail = '@(Model?.User?.Mail ?? Model?.User?.UserPrincipalName ?? "")';
+            if (firstName.value.trim() !== "" || lastName.value.trim() !== "" || email.value.trim() !== "") {
+                // keep preview hidden until user interacts intentionally; uncomment to show immediately:
+                // updatePreview();
+            }
+        })();
     </script>
 }
 
