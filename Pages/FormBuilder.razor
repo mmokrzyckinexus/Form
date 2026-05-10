@@ -218,11 +218,11 @@
                 <option value="">-- Select a direct report --</option>
                 @foreach (var directReport in directReports)
                 {
-                    var id = directReport.GetProperty("id").GetString();
-                    var displayName = directReport.GetProperty("displayName").GetString();
-                    <option value="@id">
+                    //var id = directReport.GetProperty("id").GetString();
+                    /*var displayName = directReport.GetProperty("displayName").GetString();
+                    <option value="">
                         @displayName
-                    </option>
+                    </option>*/
                 }
             </select>
         }

@@ -3,19 +3,19 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-@model Form.Models.AzureUserViewModel
+@model HomeIndexViewModel
 
 @{
-    var directReportsProjection = Model.DirectReports.Select(user => new
+    var directReportsProjection = Model.AzureUser.DirectReports.Select(user => new
     {
         displayname = user.DisplayName,
         userPrincipalName = user.UserPrincipalName
     }) ?? Enumerable.Empty<object>();
 
     var directReportsJson = JsonSerializer.Serialize(directReportsProjection);
-    var currentdirectReportGivenName = Model.User.GivenName ?? "";
-    var currentdirectReportSurName = Model.User.Surname ?? "";
-    var currentdirectReportEmail = Model.User.UserPrincipalName ?? "";
+    var currentdirectReportGivenName = Model.AzureUser.User.GivenName ?? "";
+    var currentdirectReportSurName = Model.AzureUser.User.Surname ?? "";
+    var currentdirectReportEmail = Model.AzureUser.User.UserPrincipalName ?? "";
 }
 
 <div class="text-center mb-3">
@@ -23,11 +23,11 @@
     <p>Ask custom questions on the left. Answers map to fields on the preview form on the right (unsaved).</p>
 </div>
 
-<component type="typeof(Form.Pages.FormBuilder)" render-mode="ServerPrerendered"
+<!--<component type="typeof(Form.Pages.FormBuilder)" render-mode="ServerPrerendered"
            param-DirectReportJason="@directReportsJson"
            param-UserGivenName="@currentdirectReportGivenName"
            param-UserSurname="@currentdirectReportSurName"
-           param-UserEmail="@currentdirectReportEmail" />
+           param-UserEmail="@currentdirectReportEmail" />-->
 
 <div class="row g-3" style="height:75vh;">
     <div class="col-md-5" style="overflow:auto;">
@@ -43,7 +43,7 @@
                             <label class="form-check-label" for="subjectSelf">For me (@currentdirectReportGivenName @currentdirectReportSurName)</label>
                         </div>
 
-                        @if ((Model.DirectReports ?? Enumerable.Empty<User>()).Any())
+                        @if ((Model.AzureUser.DirectReports ?? Enumerable.Empty<User>()).Any())
                         {
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="formSubject" id="subjectDirect" value="direct">
@@ -52,11 +52,11 @@
                         }
                     </div>
 
-                    @if ((Model.DirectReports ?? Enumerable.Empty<User>()).Any())
+                    @if ((Model.AzureUser.DirectReports ?? Enumerable.Empty<User>()).Any())
                     {
                         <select id="directReportSelect" class="form-select mt-2">
                             <option value="">-- choose direct report --</option>
-                            @foreach (var directReport in Model.DirectReports ?? Enumerable.Empty<User>())
+                            @foreach (var directReport in Model.AzureUser.DirectReports ?? Enumerable.Empty<User>())
                             {
                                 var email = directReport.UserPrincipalName ?? "";
                                 <option value="@directReport.Id" data-display="@directReport.DisplayName" data-email="@email">@directReport.DisplayName (@(string.IsNullOrEmpty(email) ? "no-email" : email))</option>
@@ -68,7 +68,7 @@
                     {
                         <select id="directReportSelect" class="form-select mt-2" disabled>
                             <option value="">-- choose direct report --</option>
-                            @foreach (var directReport in Model.DirectReports ?? Enumerable.Empty<User>())
+                            @foreach (var directReport in Model.AzureUser.DirectReports ?? Enumerable.Empty<User>())
                             {
                                 var email = directReport.UserPrincipalName ?? "";
                                 <option value="@directReport.Id" data-display="@directReport.DisplayName" data-email="@email">@directReport.DisplayName (@(string.IsNullOrEmpty(email) ? "no-email" : email))</option>
@@ -81,24 +81,18 @@
                     <!-- questions rendered here by JS -->
                 </div>
 
-                <div class="row g-2 align-items-end mb-3">
-                    <div class="col-5">
-                        <label class="form-label small">Question label</label>
-                        <input id="newQuestionLabel" class="form-control" placeholder="e.g. What is your preferred name?" />
-                    </div>
-                    <div class="col-5">
-                        <label class="form-label small">Map to</label>
-                        <select id="newQuestionTarget" class="form-select">
-                            <option value="firstName">Preview: First name</option>
-                            <option value="lastName">Preview: Last name</option>
-                            <option value="email">Preview: Email</option>
-                            <option value="bio">Preview: Summary / Notes</option>
-                        </select>
-                    </div>
-                    <div class="col-2">
-                        <button id="btnAddQuestion" class="btn btn-primary w-100">Add</button>
-                    </div>
+                <div class="mb-3">
+                    <label class="form-label">Add a question</label>
+                    <select class="form-select" onchange="addQuestion(this.value)">
+                        <option value="">-- Add a question --</option>
+                        @foreach (var question in Model.AvailableQuestions)
+                        {
+                            <option value="@question.Id">@question.Label</option>
+                        }
+                    </select>
                 </div>
+
+                <button type="button" onclick="addQuestion()">Add</button>
 
                 <div class="form-text mb-2">
                     Each question creates an answer input. Typing an answer will update the mapped preview field in realtime.
@@ -140,107 +134,168 @@
 
 @section Scripts {
     <script>
-        (function () {
-            const firstName = document.getElementById('firstName');
-            const lastName = document.getElementById('lastName');
-            const email = document.getElementById('email');
-            const bio = document.getElementById('bio');
-            const previewWrapper = document.getElementById('previewWrapper');
-            const emptyPlaceholder = document.getElementById('emptyPlaceholder');
-            const previewName = document.getElementById('previewName');
-            const previewEmail = document.getElementById('previewEmail');
-            const previewBio = document.getElementById('previewBio');
-            const wordFrame = document.getElementById('wordFrame');
-            const includeIframe = document.getElementById('includeIframe');
-            const btnSave = document.getElementById('btnSave');
-            const btnReset = document.getElementById('btnReset');
+         const firstName = document.getElementById('firstName');
+         const lastName = document.getElementById('lastName');
+         const email = document.getElementById('email');
+         const bio = document.getElementById('bio');
+         const previewWrapper = document.getElementById('previewWrapper');
+         const emptyPlaceholder = document.getElementById('emptyPlaceholder');
+         const previewName = document.getElementById('previewName');
+         const previewEmail = document.getElementById('previewEmail');
+         const previewBio = document.getElementById('previewBio');
+         const wordFrame = document.getElementById('wordFrame');
+         const includeIframe = document.getElementById('includeIframe');
+         const btnSave = document.getElementById('btnSave');
+         const btnReset = document.getElementById('btnReset');
 
-            // Flag to show preview only after first typing
-            let hasTyped = false;
+        document.getElementById("directReportSelect").disabled = true;
 
-            function showPreviewIfNeeded() {
-                if (!hasTyped) {
-                    previewWrapper.classList.remove('d-none');
-                    emptyPlaceholder.classList.add('d-none');
-                    hasTyped = true;
-                    btnSave.disabled = false;
+         document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("subjectSelf").addEventListener("change", function () {
+                if (this.checked)
+                {
+                    document.getElementById("directReportSelect").disabled = true;
+                    document.getElementById("directReportSelect").selectedIndex = 0;
                 }
+                console.log("fired");
+            })
+
+            if (document.getElementById("subjectDirect"))
+            {
+                document.getElementById("subjectDirect").addEventListener("change", function () {
+                    if (this.checked)
+                    {
+                       document.getElementById("directReportSelect").disabled = false;
+                    }
+                })
             }
+         })
 
-            function updatePreview() {
-                showPreviewIfNeeded();
+         // Flag to show preview only after first typing
 
-                const f = firstName.value.trim();
-                const l = lastName.value.trim();
-                previewName.textContent = (f || l) ? `${f} ${l}`.trim() : 'No name provided';
-                previewEmail.textContent = email.value.trim() || 'No email provided';
-                previewBio.textContent = bio.value.trim() || '(empty)';
+         const availableQuestions = @Html.Raw(JsonSerializer.Serialize(Model.AvailableQuestions));
 
-                if (includeIframe && includeIframe.checked) {
-                    wordFrame.style.display = '';
-                } else {
-                    wordFrame.style.display = 'none';
-                }
-            }
+         function addQuestion()
+         {
+             const id = document.getElementById('questionSelect').value;
+             const def = availableQuestions.find(question => question.id === id);
+             if (!def) return;
+         }
 
-            // Wire up events
-            [firstName, lastName, email, bio].forEach(el => {
-                el.addEventListener('input', updatePreview);
-            });
+         let hasTyped = false;
 
-            includeIframe.addEventListener('change', () => {
-                if (hasTyped) updatePreview();
-            });
+         function showPreviewIfNeeded() {
+             if (!hasTyped) {
+                 previewWrapper.classList.remove('d-none');
+                 emptyPlaceholder.classList.add('d-none');
+                 hasTyped = true;
+                 btnSave.disabled = false;
+             }
+         }
 
-            btnReset.addEventListener('click', () => {
-                // reset to values that were prefilled initially (server-provided)
-                firstName.value = '@(Model?.User?.GivenName ?? "")';
-                lastName.value = '@(Model?.User?.Surname ?? "")';
-                email.value = '@(Model?.User?.Mail ?? Model?.User?.UserPrincipalName ?? "")';
-                bio.value = '';
-                // hide preview until user types again
-                previewWrapper.classList.add('d-none');
-                emptyPlaceholder.classList.remove('d-none');
-                hasTyped = false;
-                btnSave.disabled = true;
-                wordFrame.style.display = includeIframe.checked ? '' : 'none';
-            });
+         function renderQuestion(def)
+         {
+             const container = document.getElementById('questionsList');
+             
+             let html = `<div class="mb-3">
+                         <label class="form-label">${def.label}</label`;
 
-            // Optional: Save handler (currently just disables state; implement server save if needed)
-            btnSave.addEventListener('click', () => {
-                btnSave.disabled = true;
-                // show a quick saved indicator
-                const savedBadge = document.createElement('span');
-                savedBadge.className = 'badge bg-success ms-2';
-                savedBadge.innerText = 'Saved (demo)';
-                document.querySelector('#previewWrapper .card-header').appendChild(savedBadge);
-                setTimeout(() => {
-                    if (savedBadge.parentNode) savedBadge.remove();
-                    btnSave.disabled = false;
-                }, 1500);
-            });
+             switch (def.type)
+             {
+                 case "text":
+                     html += `<input class="form-control" name="Question[${def.id}].value"/>`;
+                     break;
+                 case "singleselect":
+                     html += `<select class="form-select" name="Question[${def.id}].value">`;
+                     break;
+                 case "multiselect":
+                     def.options.forEach(options => {
+                         html += `<div class="form-check">
+                                     <input class="form-check-input" type="checkbox" name="Questi[${def.id}].value"value="${options.value}" />
+                                     <label class="form-check-label">${options}</label>
+                                 </div>`;
+                     });
+                     break;
+                 // add more types as needed
+             }
 
-            // If the user has already prefilled values, show a preview when they focus or type
-            // (don't show automatically on page load)
-            // But if any value is non-empty and different from server-provided, show preview
-            const initialFirst = '@(Model?.User?.GivenName ?? "")';
-            const initialLast = '@(Model?.User?.Surname ?? "")';
-            const initialEmail = '@(Model?.User?.Mail ?? Model?.User?.UserPrincipalName ?? "")';
-            if (firstName.value.trim() !== "" || lastName.value.trim() !== "" || email.value.trim() !== "") {
-                // keep preview hidden until user interacts intentionally; uncomment to show immediately:
-                // updatePreview();
-            }
-        })();
+             html += `<input type="hidden" name="Question[${def.id}].target" value="${def.target}" />`;
+             container.insertAdjacentHTML('beforeend', html);
+         }
+
+         function updatePreview() {
+             showPreviewIfNeeded();
+
+             const f = firstName.value.trim();
+             const l = lastName.value.trim();
+             previewName.textContent = (f || l) ? `${f} ${l}`.trim() : 'No name provided';
+             previewEmail.textContent = email.value.trim() || 'No email provided';
+             previewBio.textContent = bio.value.trim() || '(empty)';
+
+             if (includeIframe && includeIframe.checked) {
+                 wordFrame.style.display = '';
+             } else {
+                 wordFrame.style.display = 'none';
+             }
+         }
+
+         // Wire up events
+         /*[firstName, lastName, email, bio].forEach(el => {
+             el.addEventListener('input', updatePreview);
+         });*/
+
+         /*includeIframe.addEventListener('change', () => {
+             if (hasTyped) updatePreview();
+         });*/
+
+         /*btnReset.addEventListener('click', () => {
+             // reset to values that were prefilled initially (server-provided)
+             firstName.value = '@(Model.AzureUser?.User?.GivenName ?? "")';
+             lastName.value = '@(Model.AzureUser?.User?.Surname ?? "")';
+             email.value = '@(Model.AzureUser?.User?.Mail ?? Model.AzureUser?.User?.UserPrincipalName ?? "")';
+             bio.value = '';
+             // hide preview until user types again
+             previewWrapper.classList.add('d-none');
+             emptyPlaceholder.classList.remove('d-none');
+             hasTyped = false;
+             btnSave.disabled = true;
+             wordFrame.style.display = includeIframe.checked ? '' : 'none';
+         });*/
+
+         // Optional: Save handler (currently just disables state; implement server save if needed)
+         /*btnSave.addEventListener('click', () => {
+             btnSave.disabled = true;
+             // show a quick saved indicator
+             const savedBadge = document.createElement('span');
+             savedBadge.className = 'badge bg-success ms-2';
+             savedBadge.innerText = 'Saved (demo)';
+             document.querySelector('#previewWrapper .card-header').appendChild(savedBadge);
+             setTimeout(() => {
+                 if (savedBadge.parentNode) savedBadge.remove();
+                 btnSave.disabled = false;
+             }, 1500);
+         });*/
+
+         // If the user has already prefilled values, show a preview when they focus or type
+         // (don't show automatically on page load)
+         // But if any value is non-empty and different from server-provided, show preview
+         const initialFirst = '@(Model.AzureUser?.User?.GivenName ?? "")';
+         const initialLast = '@(Model.AzureUser?.User?.Surname ?? "")';
+         const initialEmail = '@(Model.AzureUser?.User?.Mail ?? Model.AzureUser?.User?.UserPrincipalName ?? "")';
+         //if (firstName.value.trim() !== "" || lastName.value.trim() !== "" || email.value.trim() !== "") {
+             // keep preview hidden until user interacts intentionally; uncomment to show immediately:
+             // updatePreview();
+         //}
     </script>
 }
 
 <div style="display:flex; height:90vh; gap:12px;">
-    <h2>Name: @(Model.User.GivenName)</h2>
-    @if (Model.Manager is Microsoft.Graph.Models.User user)
+    <h2>Name: @(Model.AzureUser.User.GivenName)</h2>
+    @if (Model.AzureUser.Manager is Microsoft.Graph.Models.User user)
     {
         <h2>Name: @(user.DisplayName), upn: @(user.UserPrincipalName)</h2>
     }
-    else if (Model.Manager is OrgContact oc)
+    else if (Model.AzureUser.Manager is OrgContact oc)
     {
         <h2>NameOC: @(oc.DisplayName), @(oc.Mail)</h2>
     }
@@ -250,7 +305,7 @@
     }
 
     <ol>
-        @foreach (var directReport in Model.DirectReports)
+        @foreach (var directReport in Model.AzureUser.DirectReports)
         {
             if (directReport is Microsoft.Graph.Models.User drUser)
             {
