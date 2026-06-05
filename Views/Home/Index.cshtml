@@ -3,25 +3,31 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-@model Form.Models.AzureUserViewModel
+@model HomeIndexViewModel
 
 @{
-    var directReportsProjection = Model.DirectReports.Select(user => new
+    var directReportsProjection = Model.AzureUser.DirectReports.Select(user => new
     {
         displayname = user.DisplayName,
         userPrincipalName = user.UserPrincipalName
     }) ?? Enumerable.Empty<object>();
 
     var directReportsJson = JsonSerializer.Serialize(directReportsProjection);
-    var currentdirectReportGivenName = Model.User.GivenName ?? "";
-    var currentdirectReportSurName = Model.User.Surname ?? "";
-    var currentdirectReportEmail = Model.User.UserPrincipalName ?? "";
+    var currentdirectReportGivenName = Model.AzureUser.User.GivenName ?? "";
+    var currentdirectReportSurName = Model.AzureUser.User.Surname ?? "";
+    var currentdirectReportEmail = Model.AzureUser.User.UserPrincipalName ?? "";
 }
 
 <div class="text-center mb-3">
     <h1 class="display-1">Welcome</h1>
     <p>Ask custom questions on the left. Answers map to fields on the preview form on the right (unsaved).</p>
 </div>
+
+<!--component type="typeof(Form.Pages.FormBuilder)" render-mode="ServerPrerendered"
+           param-DirectReportJason="@directReportsJson"
+           param-UserGivenName="@currentdirectReportGivenName"
+           param-UserSurname="@currentdirectReportSurName"
+           param-UserEmail="@currentdirectReportEmail" /-->
 
 <div class="row g-3" style="height:75vh;">
     <div class="col-md-5" style="overflow:auto;">
@@ -37,7 +43,7 @@
                             <label class="form-check-label" for="subjectSelf">For me (@currentdirectReportGivenName @currentdirectReportSurName)</label>
                         </div>
 
-                        @if ((Model.DirectReports ?? Enumerable.Empty<User>()).Any())
+                        @if ((Model.AzureUser.DirectReports ?? Enumerable.Empty<User>()).Any())
                         {
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="formSubject" id="subjectDirect" value="direct">
@@ -46,11 +52,11 @@
                         }
                     </div>
 
-                    @if ((Model.DirectReports ?? Enumerable.Empty<User>()).Any())
+                    @if ((Model.AzureUser.DirectReports ?? Enumerable.Empty<User>()).Any())
                     {
                         <select id="directReportSelect" class="form-select mt-2">
                             <option value="">-- choose direct report --</option>
-                            @foreach (var directReport in Model.DirectReports ?? Enumerable.Empty<User>())
+                            @foreach (var directReport in Model.AzureUser.DirectReports ?? Enumerable.Empty<User>())
                             {
                                 var email = directReport.UserPrincipalName ?? "";
                                 <option value="@directReport.Id" data-display="@directReport.DisplayName" data-email="@email">@directReport.DisplayName (@(string.IsNullOrEmpty(email) ? "no-email" : email))</option>
@@ -62,7 +68,7 @@
                     {
                         <select id="directReportSelect" class="form-select mt-2" disabled>
                             <option value="">-- choose direct report --</option>
-                            @foreach (var directReport in Model.DirectReports ?? Enumerable.Empty<User>())
+                            @foreach (var directReport in Model.AzureUser.DirectReports ?? Enumerable.Empty<User>())
                             {
                                 var email = directReport.UserPrincipalName ?? "";
                                 <option value="@directReport.Id" data-display="@directReport.DisplayName" data-email="@email">@directReport.DisplayName (@(string.IsNullOrEmpty(email) ? "no-email" : email))</option>
@@ -75,24 +81,18 @@
                     <!-- questions rendered here by JS -->
                 </div>
 
-                <div class="row g-2 align-items-end mb-3">
-                    <div class="col-5">
-                        <label class="form-label small">Question label</label>
-                        <input id="newQuestionLabel" class="form-control" placeholder="e.g. What is your preferred name?" />
-                    </div>
-                    <div class="col-5">
-                        <label class="form-label small">Map to</label>
-                        <select id="newQuestionTarget" class="form-select">
-                            <option value="firstName">Preview: First name</option>
-                            <option value="lastName">Preview: Last name</option>
-                            <option value="email">Preview: Email</option>
-                            <option value="bio">Preview: Summary / Notes</option>
-                        </select>
-                    </div>
-                    <div class="col-2">
-                        <button id="btnAddQuestion" class="btn btn-primary w-100">Add</button>
-                    </div>
+                <div class="mb-3">
+                    <label class="form-label">Add a question</label>
+                    <select id="questionSelect" class="form-select">
+                        <option value="">-- Add a question --</option>
+                        @foreach (var question in Model.AvailableQuestions)
+                        {
+                            <option value="@question.Id">@question.Label</option>
+                        }
+                    </select>
                 </div>
+
+                <button type="button" onclick="addQuestion(document.getElementById('questionSelect').value)">Add</button>
 
                 <div class="form-text mb-2">
                     Each question creates an answer input. Typing an answer will update the mapped preview field in realtime.
@@ -116,7 +116,14 @@
                     <p><strong>Email:</strong> <span id="previewEmail"></span></p>
                     <p><strong>Summary:</strong></p>
                     <div id="previewBio" class="border rounded p-2" style="min-height:80px;"></div>
-        
+
+                    <div id="previewQuestions" class="mt-4 d-none">
+                        <h5>Questions & Answers</h5>
+                        <div id="questionsPreviewList" class="border rounded p-2" style="min-height:100px; background-color: #f8f9fa;">
+                            <!-- dynamically rendered Q&A pairs will go here -->
+                        </div>
+                    </div>
+
                     <div id="docPreview" class="mt-3" style="height:50vh;">
                         <!--<iframe id="wordFrame" src="@ViewBag.word" style="width:100%; height:100%; border:1px solid #ddd; display:none"></iframe>-->
                     </div>
@@ -134,107 +141,361 @@
 
 @section Scripts {
     <script>
-        (function () {
-            const firstName = document.getElementById('firstName');
-            const lastName = document.getElementById('lastName');
-            const email = document.getElementById('email');
-            const bio = document.getElementById('bio');
-            const previewWrapper = document.getElementById('previewWrapper');
-            const emptyPlaceholder = document.getElementById('emptyPlaceholder');
-            const previewName = document.getElementById('previewName');
-            const previewEmail = document.getElementById('previewEmail');
-            const previewBio = document.getElementById('previewBio');
-            const wordFrame = document.getElementById('wordFrame');
-            const includeIframe = document.getElementById('includeIframe');
-            const btnSave = document.getElementById('btnSave');
-            const btnReset = document.getElementById('btnReset');
+         const firstName = document.getElementById('firstName');
+         const lastName = document.getElementById('lastName');
+         const email = document.getElementById('email');
+         const bio = document.getElementById('bio');
+         const previewWrapper = document.getElementById('previewWrapper');
+         const emptyPlaceholder = document.getElementById('emptyPlaceholder');
+         const previewName = document.getElementById('previewName');
+         const previewEmail = document.getElementById('previewEmail');
+         const previewBio = document.getElementById('previewBio');
+         const wordFrame = document.getElementById('wordFrame');
+         const includeIframe = document.getElementById('includeIframe');
+         const btnSave = document.getElementById('btnSave');
+         const btnReset = document.getElementById('btnReset');
+         const previewQuestions = document.getElementById('previewQuestions');
 
-            // Flag to show preview only after first typing
-            let hasTyped = false;
+         document.getElementById("directReportSelect").disabled = true;
 
-            function showPreviewIfNeeded() {
-                if (!hasTyped) {
-                    previewWrapper.classList.remove('d-none');
-                    emptyPlaceholder.classList.add('d-none');
-                    hasTyped = true;
-                    btnSave.disabled = false;
+         document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("subjectSelf").addEventListener("change", function () {
+                if (this.checked)
+                {
+                    document.getElementById("directReportSelect").disabled = true;
+                    document.getElementById("directReportSelect").selectedIndex = 0;
                 }
+                console.log("fired");
+            })
+
+            if (document.getElementById("subjectDirect"))
+            {
+                document.getElementById("subjectDirect").addEventListener("change", function () {
+                    if (this.checked)
+                    {
+                       document.getElementById("directReportSelect").disabled = false;
+                    }
+                })
             }
+         })
 
-            function updatePreview() {
-                showPreviewIfNeeded();
+         // Flag to show preview only after first typing
 
-                const f = firstName.value.trim();
-                const l = lastName.value.trim();
-                previewName.textContent = (f || l) ? `${f} ${l}`.trim() : 'No name provided';
-                previewEmail.textContent = email.value.trim() || 'No email provided';
-                previewBio.textContent = bio.value.trim() || '(empty)';
+         const availableQuestions = @Html.Raw(JsonSerializer.Serialize(Model.AvailableQuestions));
 
-                if (includeIframe && includeIframe.checked) {
-                    wordFrame.style.display = '';
-                } else {
-                    wordFrame.style.display = 'none';
+         const initialFirst = '@(currentdirectReportGivenName)';
+         const initialLast = '@(currentdirectReportSurName)';
+         const initialEmail = '@(currentdirectReportEmail)';
+
+         const addedQuestions = [];
+         let instanceCounter = 0;
+
+         function updateQuestionsPreview() {
+             previewWrapper.classList.remove('d-none');
+             emptyPlaceholder.classList.remove('d-none');
+
+             questionsPreview.innerHTML = '';
+             if (addedQuestions.length === 0)
+             {
+                previewQuestions.classList.add('d-none');
+                return;
+             }
+
+             previewQuestions.classList.remove('d-none');
+             addedQuestions.forEach(question, idx => {
+                 const item = document.createElement('div');
+                 item.className = 'mb-2';
+                 item.innerHTML = `<strong>${question.label}:</strong> ${question.value || '<em>(no answer)</em>'}`;
+                 previewQuestions.appendChild(item);
+             });
+         }
+
+         /*const answers = {
+             lastName = initialLast || '',
+             email = initialEmail || '',
+             bio: ''
+         };*/
+
+
+         /*function addQuestion()
+         {
+             const id = document.getElementById('questionSelect').value;
+             const def = availableQuestions.find(question => question.id === id);
+             if (!def) return;
+         }*/
+
+         //let hasTyped = false;
+
+         /*function showPreviewIfNeeded() {
+             if (!hasTyped) {
+                 previewWrapper.classList.remove('d-none');
+                 emptyPlaceholder.classList.add('d-none');
+                 hasTyped = true;
+                 btnSave.disabled = false;
+             }
+         }*/
+
+         /*function renderQuestion(def)
+         {
+             const container = document.getElementById('questionsList');
+             
+             let html = `<div class="mb-3">
+                         <label class="form-label">${def.label}</label`;
+
+             switch (def.type)
+             {
+                 case "text":
+                     html += `<input class="form-control" name="Question[${def.id}].value"/>`;
+                     break;
+                 case "singleselect":
+                     html += `<select class="form-select" name="Question[${def.id}].value">`;
+                     break;
+                 case "multiselect":
+                     def.options.forEach(options => {
+                         html += `<div class="form-check">
+                                     <input class="form-check-input" type="checkbox" name="Questi[${def.id}].value"value="${options.value}" />
+                                     <label class="form-check-label">${options}</label>
+                                 </div>`;
+                     });
+                     break;
+                 // add more types as needed
+             }
+
+             html += `<input type="hidden" name="Question[${def.id}].target" value="${def.target}" />`;
+             container.insertAdjacentHTML('beforeend', html);
+         }*/
+
+         
+
+         window.addQuestion = function(id) {
+             if (!id) return;
+             const def = availableQuestions.find(question => (question.id && question.id === id) || (question.Id && question.Id === id));
+             if (!def) return;
+             
+             instanceCounter++;
+             const container = document.createElement('questionsList');
+             if (!container)
+             {
+                 console.log("#questionsList not found");
+                 return;
+             }
+
+             const wrapper = document.createElement('div');
+             wrapper.className = 'mb-3 border rounded p-2';
+             wrapper.dataset.defId = id;
+             wrapper.dataset.instanceId = `instance_${instanceCounter}`;
+
+             const questionRecord = {
+                 id: id,
+                 instanceId: `instance_${instanceCounter}`,
+                 label: def.label ?? def.Label ?? 'Question',
+                 target: def.target ?? def.Target ?? 'bio',
+                 value: '',
+                 values: []
+             };
+
+             addedQuestions.push(questionRecord);
+             
+             // Label
+             const label = document.createElement('label');
+             label.className = 'form-label';
+             label.textContent = questionRecord.label;
+             wrapper.appendChild(label);
+             
+             // Helper to set target value and rerender preview
+             function setTargetValue(value) {
+                 if (def.target) {
+                     // target names should match preview mapping: firstName, lastName, email, bio
+                     answers[def.target] = value;
+                     renderPreviewFromAnswers();
+                 }
+             }
+             
+             // def.Type might be numeric (enum) or string depending on JSON serializer.
+             const typeVal = (typeof def.Type === 'number') ? def.Type : (def.Type || '').toString().toLowerCase();
+             
+             // Text
+             if (typeVal === 0 || typeVal === 'text' || typeVal === 'Text'.toLowerCase()) {
+                 const input = document.createElement('input');
+                 input.className = 'form-control';
+                 input.type = 'text';
+                 input.placeholder = 'Type answer...';
+                 input.addEventListener('input', e => setTargetValue(e.target.value));
+                 wrapper.appendChild(input);
+             }
+             // Single select
+             else if (typeVal === 1 || typeVal === 'singleselect' || typeVal === 'singleselect') {
+                 const sel = document.createElement('select');
+                 sel.className = 'form-select';
+                 const opts = def.questions || [];
+                 sel.appendChild(new Option('-- choose --', ''));
+                 opts.forEach(opt => sel.appendChild(new Option(opt, opt)));
+                 sel.addEventListener('change', e => setTargetValue(e.target.value));
+                 wrapper.appendChild(sel);
+             }
+             // Multi select (native multi)
+             else if (typeVal === 2 || typeVal === 'multiselect' || typeVal === 'multiselect') {
+                 const sel = document.createElement('select');
+                 sel.className = 'form-select';
+                 sel.multiple = true;
+                 const opts = def.questions || [];
+                 opts.forEach(opt => sel.appendChild(new Option(opt, opt)));
+                 sel.addEventListener('change', () => {
+                     const vals = Array.from(sel.selectedOptions).map(o => o.value);
+                     setTargetValue(vals.join(', '));
+                 });
+                 wrapper.appendChild(sel);
+             }
+             // Checkbox list (each option a checkbox)
+             else if (typeVal === 3 || typeVal === 'checkbox' || typeVal === 'Checkbox'.toLowerCase()) {
+                 console.log(typeVal);
+                 questionRecord.values = [];
+
+                 const options = def.questions || [];
+                 options.forEach((option, i) => {
+                     const chkWrap = document.createElement('div');
+                     chkWrap.className = 'form-check';
+                     const cb = document.createElement('input');
+                     cb.className = 'form-check-input';
+                     cb.type = 'Checkbox';
+                     cb.value = option;
+                     cb.id = `chk_${id}_${instanceCounter}_${i}`;
+                     cb.addEventListener('change', () => {
+                         const checked = Array.from(wrapper.querySelectorAll('input[type=checkbox]:checked')).map(i => i.value);
+                         questionRecord.values = checked;
+                         questionRecord.value = checked.join(', ');
+                         updateQuestionsPreview();
+                     });
+
+                     const label = document.createElement('label');
+                     label.className = 'form-check-label ms-1';
+                     label.htmlFor = cb.id;
+                     label.textContent = option;
+                     chkWrap.appendChild(cb);
+                     chkWrap.appendChild(label);
+                     wrapper.appendChild(chkWrap);
+                 });
+             }
+             else {
+                 // fallback to text input
+                 const input = document.createElement('input');
+                 input.className = 'form-control';
+                 input.type = 'text';
+                 input.placeholder = 'Type answer...';
+                 input.addEventListener('input', e => setTargetValue(e.target.value));
+                 wrapper.appendChild(input);
+             }
+             
+             // Remove button
+             const remove = document.createElement('button');
+             remove.type = 'button';
+             remove.className = 'btn btn-sm btn-outline-danger mt-2';
+             remove.textContent = 'Remove';
+             remove.addEventListener('click', () => {
+                 // optionally clear mapped value when removed:
+                 if (def.target) {
+                     // only clear if no other question is mapping to same target; simple approach: reset to server initial
+                     if (def.target === 'firstName') answers.firstName = initialFirst;
+                     if (def.target === 'lastName') answers.lastName = initialLast;
+                     if (def.target === 'email') answers.email = initialEmail;
+                     if (def.target === 'bio') answers.bio = '';
+                     renderPreviewFromAnswers();
+                 }
+                 wrapper.remove();
+             });
+             wrapper.appendChild(remove);
+             
+             questionsList.appendChild(wrapper);
+        };
+
+        window.addQuestion = window.addQuestion;
+
+        // Optional: Clear answers / reset UI wiring
+        /*document.getElementById('btnClearAnswers')?.addEventListener('click', () => {
+            answers.firstName = initialFirst;
+            answers.lastName = initialLast;
+            answers.email = initialEmail;
+            answers.bio = '';
+            // clear text inputs and uncheck boxes
+            const inputs = questionsList.querySelectorAll('input, textarea, select');
+            inputs.forEach(i => {
+                if (i.type === 'checkbox') i.checked = false;
+                else if (i.tagName === 'SELECT') {
+                    if (i.multiple) Array.from(i.options).forEach(o => o.selected = false);
+                    else i.selectedIndex = 0;
                 }
-            }
-
-            // Wire up events
-            [firstName, lastName, email, bio].forEach(el => {
-                el.addEventListener('input', updatePreview);
+                else i.value = '';
             });
+            renderPreviewFromAnswers();
+        });
 
-            includeIframe.addEventListener('change', () => {
-                if (hasTyped) updatePreview();
-            });
+        document.getElementById('btnResetQuestions')?.addEventListener('click', () => {
+            questionsList.innerHTML = '';
+            answers.firstName = initialFirst;
+            answers.lastName = initialLast;
+            answers.email = initialEmail;
+            answers.bio = '';
+            previewWrapper.classList.add('d-none');
+            emptyPlaceholder.classList.remove('d-none');
+        });*/
 
-            btnReset.addEventListener('click', () => {
-                // reset to values that were prefilled initially (server-provided)
-                firstName.value = '@(Model?.User?.GivenName ?? "")';
-                lastName.value = '@(Model?.User?.Surname ?? "")';
-                email.value = '@(Model?.User?.Mail ?? Model?.User?.UserPrincipalName ?? "")';
-                bio.value = '';
-                // hide preview until user types again
-                previewWrapper.classList.add('d-none');
-                emptyPlaceholder.classList.remove('d-none');
-                hasTyped = false;
-                btnSave.disabled = true;
-                wordFrame.style.display = includeIframe.checked ? '' : 'none';
-            });
+         // Wire up events
+         /*[firstName, lastName, email, bio].forEach(el => {
+             el.addEventListener('input', updatePreview);
+         });*/
 
-            // Optional: Save handler (currently just disables state; implement server save if needed)
-            btnSave.addEventListener('click', () => {
-                btnSave.disabled = true;
-                // show a quick saved indicator
-                const savedBadge = document.createElement('span');
-                savedBadge.className = 'badge bg-success ms-2';
-                savedBadge.innerText = 'Saved (demo)';
-                document.querySelector('#previewWrapper .card-header').appendChild(savedBadge);
-                setTimeout(() => {
-                    if (savedBadge.parentNode) savedBadge.remove();
-                    btnSave.disabled = false;
-                }, 1500);
-            });
+         /*includeIframe.addEventListener('change', () => {
+             if (hasTyped) updatePreview();
+         });*/
 
-            // If the user has already prefilled values, show a preview when they focus or type
-            // (don't show automatically on page load)
-            // But if any value is non-empty and different from server-provided, show preview
-            const initialFirst = '@(Model?.User?.GivenName ?? "")';
-            const initialLast = '@(Model?.User?.Surname ?? "")';
-            const initialEmail = '@(Model?.User?.Mail ?? Model?.User?.UserPrincipalName ?? "")';
-            if (firstName.value.trim() !== "" || lastName.value.trim() !== "" || email.value.trim() !== "") {
-                // keep preview hidden until user interacts intentionally; uncomment to show immediately:
-                // updatePreview();
-            }
-        })();
+         /*btnReset.addEventListener('click', () => {
+             // reset to values that were prefilled initially (server-provided)
+             firstName.value = '@(Model.AzureUser?.User?.GivenName ?? "")';
+             lastName.value = '@(Model.AzureUser?.User?.Surname ?? "")';
+             email.value = '@(Model.AzureUser?.User?.Mail ?? Model.AzureUser?.User?.UserPrincipalName ?? "")';
+             bio.value = '';
+             // hide preview until user types again
+             previewWrapper.classList.add('d-none');
+             emptyPlaceholder.classList.remove('d-none');
+             hasTyped = false;
+             btnSave.disabled = true;
+             wordFrame.style.display = includeIframe.checked ? '' : 'none';
+         });*/
+
+         // Optional: Save handler (currently just disables state; implement server save if needed)
+         /*btnSave.addEventListener('click', () => {
+             btnSave.disabled = true;
+             // show a quick saved indicator
+             const savedBadge = document.createElement('span');
+             savedBadge.className = 'badge bg-success ms-2';
+             savedBadge.innerText = 'Saved (demo)';
+             document.querySelector('#previewWrapper .card-header').appendChild(savedBadge);
+             setTimeout(() => {
+                 if (savedBadge.parentNode) savedBadge.remove();
+                 btnSave.disabled = false;
+             }, 1500);
+         });*/
+
+         // If the user has already prefilled values, show a preview when they focus or type
+         // (don't show automatically on page load)
+         // But if any value is non-empty and different from server-provided, show preview
+         //const initialFirst = '@(Model.AzureUser?.User?.GivenName ?? "")';
+         //const initialLast = '@(Model.AzureUser?.User?.Surname ?? "")';
+         //const initialEmail = '@(Model.AzureUser?.User?.Mail ?? Model.AzureUser?.User?.UserPrincipalName ?? "")';
+         //if (firstName.value.trim() !== "" || lastName.value.trim() !== "" || email.value.trim() !== "") {
+             // keep preview hidden until user interacts intentionally; uncomment to show immediately:
+             // updatePreview();
+         //}
     </script>
 }
 
 <div style="display:flex; height:90vh; gap:12px;">
-    <h2>Name: @(Model.User.GivenName)</h2>
-    @if (Model.Manager is Microsoft.Graph.Models.User user)
+    <h2>Name: @(Model.AzureUser.User.GivenName)</h2>
+    @if (Model.AzureUser.Manager is Microsoft.Graph.Models.User user)
     {
         <h2>Name: @(user.DisplayName), upn: @(user.UserPrincipalName)</h2>
     }
-    else if (Model.Manager is OrgContact oc)
+    else if (Model.AzureUser.Manager is OrgContact oc)
     {
         <h2>NameOC: @(oc.DisplayName), @(oc.Mail)</h2>
     }
@@ -244,7 +505,7 @@
     }
 
     <ol>
-        @foreach (var directReport in Model.DirectReports)
+        @foreach (var directReport in Model.AzureUser.DirectReports)
         {
             if (directReport is Microsoft.Graph.Models.User drUser)
             {

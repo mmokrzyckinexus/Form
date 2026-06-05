@@ -22,6 +22,31 @@ namespace Form.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly GraphServiceClient _graphClient;
 
+        readonly List<QuestionDefinitionModel> AvailableQuestions = new()
+        {
+            new()
+            {
+                Label = "First Name",
+                Target = "firstName",
+                Type = QuestionType.Text
+            },
+
+            new()
+            {
+                Label = "Last Name",
+                Target = "lastName",
+                Type = QuestionType.Text
+            },
+
+            new()
+            {
+                Label = "App",
+                Target = "bio",
+                Type = QuestionType.Checkbox,
+                Questions = new() { "instrument1", "instrument2", "instrument3" }
+            }
+        };
+
         public HomeController(ILogger<HomeController> logger, GraphServiceClient graphClient)
         {
             _logger = logger;
@@ -82,14 +107,25 @@ namespace Form.Controllers
                 }
             }
 
-            var viewModel = new AzureUserViewModel
+            /*var viewModel = new AzureUserViewModel
             {
                 User = user,
                 Manager = manager,
                 DirectReports = directReportsList
+            };*/
+
+            var model = new HomeIndexViewModel
+            {
+                AzureUser = new AzureUserViewModel
+                {
+                    User = user,
+                    Manager = manager,
+                    DirectReports = directReportsList
+                },
+                AvailableQuestions = AvailableQuestions
             };
 
-            return View(viewModel);
+            return View(model);
         }
 
         /*private static void ConfigurationRequest(RequestConfiguration<MeRequestBuilderGetRequestConfiguration> config)
@@ -113,6 +149,7 @@ namespace Form.Controllers
             public string Label { get; set; }
             public string Target { get; set; }
             public string Value { get; set; }
+            public List<string>? Values { get; set; }
         }
 
         public class PreviewRequest
