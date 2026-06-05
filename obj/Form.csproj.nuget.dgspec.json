@@ -52,7 +52,7 @@
           "dependencies": {
             "Microsoft.Graph": {
               "target": "Package",
-              "version": "[5.103.0, )"
+              "version": "[5.104.0, )"
             },
             "Microsoft.Identity.Web": {
               "target": "Package",
@@ -106,7 +106,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
