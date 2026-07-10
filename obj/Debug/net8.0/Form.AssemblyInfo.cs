@@ -14,11 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Form")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0e3413a009b0b64b7cc492abb275813cd58725f")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+72f010368e97ec8dd6a35a9d15ad62d7e2c643ce")]
->>>>>>> 2530a529c08c27dd06a915eeba74d1eb4d1a2063
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+68da1f7735445bcbcd6ff3325f4ad5944a024d1f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Form")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Form")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
