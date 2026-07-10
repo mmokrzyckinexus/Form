@@ -13,6 +13,7 @@ using Microsoft.Identity.Web;
 using System.Threading.Tasks;
 using Microsoft.Graph.DeviceManagement.DeviceConfigurations.Item.GetOmaSettingPlainTextValueWithSecretReferenceValueId;
 using System.Text;
+using Microsoft.Data.SqlClient;
 
 namespace Form.Controllers
 {
@@ -21,6 +22,7 @@ namespace Form.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly GraphServiceClient _graphClient;
+        private readonly IConfiguration _configuration;
 
         readonly List<QuestionDefinitionModel> AvailableQuestions = new()
         {
@@ -47,15 +49,30 @@ namespace Form.Controllers
             }
         };
 
-        public HomeController(ILogger<HomeController> logger, GraphServiceClient graphClient)
+        public HomeController(ILogger<HomeController> logger, GraphServiceClient graphClient, IConfiguration configuration)
         {
             _logger = logger;
             _graphClient = graphClient;
+            _configuration = configuration;
         }
 
         [AuthorizeForScopes(ScopeKeySection = "Graph:Scopes")]
         public async Task<IActionResult> Index()
         {
+            try
+            {
+                var connectionString = _configuration.GetConnectionString("DefaultConnection");
+                using var connection = new SqlConnection(connectionString);
+                connection.Open();
+
+                ViewBag.DatabaseStatus = "Database connection successful.";
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Database connection failed.");
+                ViewBag.DatabaseStatus = "Database connection failed.";
+            }
+
             var user = await _graphClient.Me.GetAsync(requestConfiguration =>
             {
                 requestConfiguration.QueryParameters.Select = new[]
@@ -144,6 +161,22 @@ namespace Form.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        /*public IActionResult DatabaseStatus()
+        {
+            try
+            {
+                var connectionString = _configuration.GetConnectionString("DefaultConnection");
+                using var connection = new SqlConnection(connectionString);
+                connection.Open();
+
+                return Ok(new { isConnected = true, Message = "Database connection successful." });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Database connection failed.");
+                return Ok(new { isConnected = false, Message = "Database connection failed." });
+            }
+        }*/
         public class QuestionAnswer
         {
             public string Label { get; set; }

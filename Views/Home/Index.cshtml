@@ -18,9 +18,19 @@
     var currentdirectReportEmail = Model.AzureUser.User.UserPrincipalName ?? "";
 }
 
+<div class="d-flex justify-content-between align-items-center">
+    <span class="badge bg-@(ViewBag.DatabaseStatus?.Contains("successful") == true ? "success" : "danger") me-5" style="padding: 10px 16px; font-size: 16px;">
+        @ViewBag.DatabaseStatus
+    </span>
+</div>
+
 <div class="text-center mb-3">
     <h1 class="display-1">Welcome</h1>
     <p>Ask custom questions on the left. Answers map to fields on the preview form on the right (unsaved).</p>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="card-title">Questions</h5>
 </div>
 
 <!--component type="typeof(Form.Pages.FormBuilder)" render-mode="ServerPrerendered"
@@ -90,9 +100,21 @@
                             <option value="@question.Id">@question.Label</option>
                         }
                     </select>
+
+                    <label class="form-label">Choose a section to add</label>
+                    <select id="sectionSelect" class="form-select" multiple size="6">
+                        <option value="">-- Choose a section --</option>
+                        @foreach (var question in Model.AvailableQuestions)
+                        {
+                            <option value="@question.Id">@question.Label</option>
+                        }
+                    </select>
+                    <div class="mt-2">
+                        <button type="button" class="btn btn-sm btn-primary" onclick="addSection(document.getElementById('sectionSelect').value)">Add section</button>
+                    </div>
                 </div>
 
-                <button type="button" onclick="addQuestion(document.getElementById('questionSelect').value)">Add</button>
+                <button type="button" onclick="addQuestion(document.getElementById('questionSelect').value)">Add question</button>
 
                 <div class="form-text mb-2">
                     Each question creates an answer input. Typing an answer will update the mapped preview field in realtime.
@@ -179,6 +201,15 @@
             }
          })
 
+         document.addEventListener("DOMContentLoaded", async () => {
+             try {
+                 const res = await fetch('/Home/DatabaseStatus');
+             }
+             catch (e) {
+
+             }
+         })
+
          // Flag to show preview only after first typing
 
          const availableQuestions = @Html.Raw(JsonSerializer.Serialize(Model.AvailableQuestions));
@@ -194,7 +225,7 @@
              previewWrapper.classList.remove('d-none');
              emptyPlaceholder.classList.remove('d-none');
 
-             questionsPreview.innerHTML = '';
+             //questionsPreview.innerHTML = '';
              if (addedQuestions.length === 0)
              {
                 previewQuestions.classList.add('d-none');
@@ -209,6 +240,41 @@
                  previewQuestions.appendChild(item);
              });
          }
+
+         /*async function checkDatabaseStatus()
+         {
+             try
+             {
+                 const result = await fetch('@Url.Action("DatabaseStatus", "HomeController")');
+                 console.log('Database status response:', result);
+                 if (!result.ok) throw new Error('Network response was not ok');
+                 console.log('here');
+                 const data = await result.json();
+                 console.log('here1');
+                 const statusBadge = document.getElementById('dbStatusBadge');
+                 const statusText = document.getElementById('dbStatusText');
+                 console.log('here2');
+                 statusBadge.title = data.message || '';
+
+                 if (data.isConnected) {
+                     statusBadge.className = 'badge bg-success';
+                     statusText.textContent = 'Database OK';
+                 } else {
+                     statusBadge.className = 'badge bg-danger';
+                     statusText.textContent = 'Database Error';
+                 }
+                 console.log('here3');
+             }
+             catch (error)
+             {
+                 console.error('Error checking database status:', error);
+                 const statusBadge = document.getElementById('dbStatusBadge');
+                 const statusText = document.getElementById('dbStatusText');
+                 statusBadge.className = 'badge bg-danger';
+                 statusText.textContent = 'Database Error';
+                 console.log('here4');
+             }
+         }*/
 
          /*const answers = {
              lastName = initialLast || '',
@@ -264,7 +330,72 @@
              html += `<input type="hidden" name="Question[${def.id}].target" value="${def.target}" />`;
              container.insertAdjacentHTML('beforeend', html);
          }*/
+         window.addSection = function(id) {
+             if (!id) return;
+             const selection = document.getElementById('sectionSelect');
+             if (!selection) return console.warn('sectionSelect not found');
+             const selectedIds = Array.from(selection.selectedOptions).map(o => o.value).filter(v => v);
+             if (selectedIds.length === 0) return console.log('No questions selected for section');
 
+             const container = document.getElementById('questionsList');
+             if (!container) return console.error('questionsList not found');
+
+             const firstId = selectedIds[0];
+             const firstDef = (availableQuestions || []).find(q => (q.id && q.id === firstId) || (q.Id && q.Id === firstId));
+             sectionName = firstDef ? firstDef.Label || firstDef.label || `Section (${selectedIds.length} questions)` : `Section (${selectedIds.length} questions)`;
+
+             const sectionId = `section_${Date.now()}`;
+             const section = document.createElement('div');
+             section.className = 'mb-4 border rounded p-3 bg-light';
+             section.id = sectionId;
+
+             const header = document.createElement('div');
+             header.className = 'd-flex justify-content-between align-items-center mb-2';
+             const title = document.createElement('strong');
+             title.textContent = sectionName;
+             const removeSection = document.createElement('button');
+             removeSection.type = 'button';
+             removeSection.className = 'btn btn-sm btn-outline-danger';
+             removeSection.textContent = 'Remove section';
+             removeSection.addEventListener('click', () => {
+                 for (let i = addedQuestions.length - 1; i >= 0; i--)
+                 {
+                     if (addedQuestions[i].sectionId === sectionId)
+                     {
+                         addedQuestions.splice(i, 1);
+                     }
+                 }
+                 section.remove();
+                 updateQuestionsPreview();
+             });
+             header.appendChild(title);
+             header.appendChild(removeSection);
+             section.appendChild(header);
+             container.appendChild(section);
+
+             const listHolder = document.createElement('div');
+             listHolder.className = 'section-questions';
+             section.appendChild(listHolder);
+
+             container.appendChild(section);
+
+             selectedIds.forEach(id => {
+                 window.addQuestion(id);
+
+                 const maybeLast = container.lastElementChild;
+                 if (!maybeLast) return;
+
+                 listHolder.appendChild(maybeLast);
+
+                 const instanceId = maybeLast.dataset.instanceId;
+                 if (instanceId)
+                 {
+                     const rec = addedQuestions.find(r => r.instanceId === instanceId);
+                     if (rec) rec.sectionId = sectionId;
+                 }
+             });
+             updateQuestionsPreview();
+         };
          
 
          window.addQuestion = function(id) {
@@ -273,7 +404,7 @@
              if (!def) return;
              
              instanceCounter++;
-             const container = document.createElement('questionsList');
+             const container = document.getElementById('questionsList');
              if (!container)
              {
                  console.log("#questionsList not found");
@@ -287,14 +418,14 @@
 
              const questionRecord = {
                  id: id,
-                 instanceId: `instance_${instanceCounter}`,
+                 instanceId: wrapper.dataset.instanceId,
                  label: def.label ?? def.Label ?? 'Question',
                  target: def.target ?? def.Target ?? 'bio',
                  value: '',
                  values: []
              };
 
-             addedQuestions.push(questionRecord);
+             //(window.addQuestion = window.addQuestion || []).push(questionRecord);
              
              // Label
              const label = document.createElement('label');
@@ -310,9 +441,11 @@
                      renderPreviewFromAnswers();
                  }
              }
-             
+             //console.log(def);
              // def.Type might be numeric (enum) or string depending on JSON serializer.
              const typeVal = (typeof def.Type === 'number') ? def.Type : (def.Type || '').toString().toLowerCase();
+             const options = def.Questions || [];
+             console.log(options);
              
              // Text
              if (typeVal === 0 || typeVal === 'text' || typeVal === 'Text'.toLowerCase()) {
@@ -327,7 +460,7 @@
              else if (typeVal === 1 || typeVal === 'singleselect' || typeVal === 'singleselect') {
                  const sel = document.createElement('select');
                  sel.className = 'form-select';
-                 const opts = def.questions || [];
+                 const opts = def.Questions || [];
                  sel.appendChild(new Option('-- choose --', ''));
                  opts.forEach(opt => sel.appendChild(new Option(opt, opt)));
                  sel.addEventListener('change', e => setTargetValue(e.target.value));
@@ -348,10 +481,10 @@
              }
              // Checkbox list (each option a checkbox)
              else if (typeVal === 3 || typeVal === 'checkbox' || typeVal === 'Checkbox'.toLowerCase()) {
-                 console.log(typeVal);
+                 console.log(typeof typeVal, typeVal);
                  questionRecord.values = [];
 
-                 const options = def.questions || [];
+                 //const options = def.questions || [];
                  options.forEach((option, i) => {
                      const chkWrap = document.createElement('div');
                      chkWrap.className = 'form-check';

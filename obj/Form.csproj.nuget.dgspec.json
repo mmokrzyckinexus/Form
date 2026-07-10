@@ -53,25 +53,29 @@
           "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[7.0.2, )"
+            },
             "Microsoft.Graph": {
               "target": "Package",
-              "version": "[5.103.0, )"
+              "version": "[6.2.0, )"
             },
             "Microsoft.Identity.Web": {
               "target": "Package",
-              "version": "[4.7.0, )"
+              "version": "[4.11.0, )"
             },
             "Microsoft.Identity.Web.GraphServiceClient": {
               "target": "Package",
-              "version": "[4.7.0, )"
+              "version": "[4.11.0, )"
             },
             "Microsoft.Identity.Web.UI": {
               "target": "Package",
-              "version": "[4.7.0, )"
+              "version": "[4.11.0, )"
             },
             "Microsoft.IdentityModel.Protocols.OpenIdConnect": {
               "target": "Package",
-              "version": "[8.17.0, )"
+              "version": "[8.19.1, )"
             },
             "Microsoft.Owin": {
               "target": "Package",
@@ -109,7 +113,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
