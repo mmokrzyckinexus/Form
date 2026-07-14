@@ -177,7 +177,7 @@ namespace Form.Controllers
                 return Ok(new { isConnected = false, Message = "Database connection failed." });
             }
         }*/
-        public class QuestionAnswer
+        /*public class QuestionAnswer
         {
             public string Label { get; set; }
             public string Target { get; set; }
@@ -191,7 +191,7 @@ namespace Form.Controllers
             public string DirectReportId { get; set; }
             public List<QuestionAnswer> Questions { get; set; } = new();
             public string Filename { get; set; }
-        }
+        }*/
 
         public class PreviewViewModel
         {
@@ -201,9 +201,9 @@ namespace Form.Controllers
             public string Bio { get; set; }
         }
 
-        [HttpPost]
-        [Route("Home/Preview")]
-        public async Task<IActionResult> Preview([FromBody] PreviewRequest request)
+        //[HttpPost]
+        //[Route("Home/Preview")]
+        /*public async Task<IActionResult> Preview([FromBody] PreviewRequest request)
         {
             string baseLineFirst = string.Empty, baseLineLast = string.Empty, baseLineEmail = string.Empty;
 
@@ -417,6 +417,6 @@ namespace Form.Controllers
                 _logger.LogError(ex, "Error saving file to OneDrive for user. Filename: {FileName}", fileName);
                 return StatusCode(500, new { Success = false, Error = "An error occurred while saving the file to OneDrive." });
             }
-        }
+        }*/
     }
 }

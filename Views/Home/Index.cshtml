@@ -19,7 +19,7 @@
 }
 
 <div class="d-flex justify-content-between align-items-center">
-    <span class="badge bg-@(ViewBag.DatabaseStatus?.Contains("successful") == true ? "success" : "danger") me-5" style="padding: 10px 16px; font-size: 16px;">
+    <span class="badge bg-@(ViewBag.DatabaseStatus?.Contains("successful") == true ? "success" : "no connected") me-5" style="padding: 10px 16px; font-size: 16px;">
         @ViewBag.DatabaseStatus
     </span>
 </div>
@@ -330,6 +330,8 @@
              html += `<input type="hidden" name="Question[${def.id}].target" value="${def.target}" />`;
              container.insertAdjacentHTML('beforeend', html);
          }*/
+
+         let increment = 1;
          window.addSection = function(id) {
              if (!id) return;
              const selection = document.getElementById('sectionSelect');
@@ -342,7 +344,9 @@
 
              const firstId = selectedIds[0];
              const firstDef = (availableQuestions || []).find(q => (q.id && q.id === firstId) || (q.Id && q.Id === firstId));
-             sectionName = firstDef ? firstDef.Label || firstDef.label || `Section (${selectedIds.length} questions)` : `Section (${selectedIds.length} questions)`;
+             //sectionName = firstDef ? firstDef.Label || firstDef.label || `Section (${selectedIds.length} questions)` : `Section (${selectedIds.length} questions)`;
+             sectionName = `Section ${increment++}`;
+             console.log(increment);
 
              const sectionId = `section_${Date.now()}`;
              const section = document.createElement('div');
