@@ -86,6 +86,34 @@
                         </select>
                     }
                 </div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <strong>Selected User Info</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="card-text"><strong>Name:</strong> @Model.AzureUser.User.DisplayName</p>
+                                <p class="card-text"><strong>Email:</strong> @Model.AzureUser.User.UserPrincipalName</p>
+                            </div>
+                            <div class="col-md-6">
+                                @if (Model.AzureUser.Manager is User manager)
+                                {
+                                    <p><strong>Manager:</strong> @manager.DisplayName</p>
+                                    <p><strong>Manager Email:</strong> @manager.UserPrincipalName</p>
+                                }
+                                else if (Model.AzureUser.Manager is OrgContact orgContact)
+                                {
+                                    <p><strong>Manager:</strong> @orgContact.DisplayName</p>
+                                    <p><strong>Manager Email:</strong> @orgContact.Mail</p>
+                                }
+                                else
+                                {
+                                    <p><strong>Manager:</strong> Not available</p>
+                                }
+                            </div>
+                    </div>
+                </div>
 
                 <div id="questionsList" class="mb-3">
                     <!-- questions rendered here by JS -->
