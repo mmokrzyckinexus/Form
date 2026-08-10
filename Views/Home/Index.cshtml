@@ -90,28 +90,50 @@
                     <div class="card-header">
                         <strong>Selected User Info</strong>
                     </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p class="card-text"><strong>Name:</strong> @Model.AzureUser.User.DisplayName</p>
-                                <p class="card-text"><strong>Email:</strong> @Model.AzureUser.User.UserPrincipalName</p>
+                    <div class="card-body" style="min-height: 150px;">
+                        <div class="row border rounded h-100">
+                            <div class="d-flex align-items-center">
+                                <span class="me-2"><strong>Name:</strong></span>
+                                <span class="flex-grow-1 text-truncate" id="displayName" style="min-width: 0;">@Model.AzureUser.User.DisplayName</span>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-10">
+                                <span class="card-text mb-1"><strong>Email:</strong></span>
+                                <span class="flex-grow-1 text-truncate" id="displayEmail">@Model.AzureUser.User.UserPrincipalName</span>
+                            </div>
+                            <div class="col-12" id="managerInfoSection" style="display: block;">
+                                <hr class="my-2">
                                 @if (Model.AzureUser.Manager is User manager)
                                 {
-                                    <p><strong>Manager:</strong> @manager.DisplayName</p>
-                                    <p><strong>Manager Email:</strong> @manager.UserPrincipalName</p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <span class="card-text mb-1"><strong>Manager:</strong></span>
+                                            <span class="flex-grow-1 text-truncate" id="managerName">@manager.DisplayName</span>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <span class="card-text mb-1"><strong>Manager Email:</strong></span>
+                                            <span class="flex-grow-1 text-truncate" id="managerEmail">@manager.UserPrincipalName</span>
+                                        </div>
+                                    </div>
                                 }
                                 else if (Model.AzureUser.Manager is OrgContact orgContact)
                                 {
-                                    <p><strong>Manager:</strong> @orgContact.DisplayName</p>
-                                    <p><strong>Manager Email:</strong> @orgContact.Mail</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <span class="card-text mb-1"><strong>Manager:</strong></span>
+                                            <span class="flex-grow-1 text-truncate" id="managerName">@orgContact.DisplayName</span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="card-text mb-1"><strong>Manager Email:</strong></span>
+                                            <span class="flex-grow-1 text-truncate" id="managerEmail">@orgContact.Mail</span>
+                                        </div>
+                                    </div>
                                 }
                                 else
                                 {
-                                    <p><strong>Manager:</strong> Not available</p>
+                                    <p id="managerNameRow"><strong>Manager:</strong> Not available</p>
                                 }
                             </div>
+                        </div>
                     </div>
                 </div>
 
@@ -191,83 +213,166 @@
 
 @section Scripts {
     <script>
-         const firstName = document.getElementById('firstName');
-         const lastName = document.getElementById('lastName');
-         const email = document.getElementById('email');
-         const bio = document.getElementById('bio');
-         const previewWrapper = document.getElementById('previewWrapper');
-         const emptyPlaceholder = document.getElementById('emptyPlaceholder');
-         const previewName = document.getElementById('previewName');
-         const previewEmail = document.getElementById('previewEmail');
-         const previewBio = document.getElementById('previewBio');
-         const wordFrame = document.getElementById('wordFrame');
-         const includeIframe = document.getElementById('includeIframe');
-         const btnSave = document.getElementById('btnSave');
-         const btnReset = document.getElementById('btnReset');
-         const previewQuestions = document.getElementById('previewQuestions');
+        const firstName = document.getElementById('firstName');
+        const lastName = document.getElementById('lastName');
+        const email = document.getElementById('email');
+        const bio = document.getElementById('bio');
+        const previewWrapper = document.getElementById('previewWrapper');
+        const emptyPlaceholder = document.getElementById('emptyPlaceholder');
+        const previewName = document.getElementById('previewName');
+        const previewEmail = document.getElementById('previewEmail');
+        const previewBio = document.getElementById('previewBio');
+        const wordFrame = document.getElementById('wordFrame');
+        const includeIframe = document.getElementById('includeIframe');
+        const btnSave = document.getElementById('btnSave');
+        const btnReset = document.getElementById('btnReset');
+        const previewQuestions = document.getElementById('previewQuestions');
+        const subjectSelfRadio = document.getElementById('subjectSelf');
+        const subjectDirectRadio = document.getElementById('subjectDirect');
+        const managerInfoSection = document.getElementById('managerInfoSection');
+        const directReportSelect = document.getElementById('directReportSelect');
+        const displayName = document.getElementById('displayName');
+        const displayEmail = document.getElementById('displayEmail');
 
-         document.getElementById("directReportSelect").disabled = true;
+        const currentUserName = document.getElementById('displayName').textContent;
+        const currentUserEmail = document.getElementById('displayEmail').textContent;
 
-         document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("subjectSelf").addEventListener("change", function () {
-                if (this.checked)
-                {
-                    document.getElementById("directReportSelect").disabled = true;
-                    document.getElementById("directReportSelect").selectedIndex = 0;
-                }
-                console.log("fired");
-            })
+        const originalName = displayName.textContent;
+        const originalEmail = displayEmail.textContent;
 
-            if (document.getElementById("subjectDirect"))
+        function resetUserInfo()
+        {
+            if (subjectSelfRadio.checked)
             {
-                document.getElementById("subjectDirect").addEventListener("change", function () {
-                    if (this.checked)
-                    {
-                       document.getElementById("directReportSelect").disabled = false;
-                    }
-                })
+                displayName.textContent = originalName;
+                displayEmail.textContent = originalEmail;
+                if (managerInfoSection) managerInfoSection.style.display = 'block';
+                if (directReportSelect) directReportSelect.value = '';
             }
-         })
+            else if (subjectDirectRadio.checked)
+            {
+                displayName.textContent = '-- Select a direct report --';
+                displayEmail.textContent = '-- Select a direct report --';
+                console.log('subjectDirectRadio');
+                if (managerInfoSection) managerInfoSection.style.display = 'none';
+                if (directReportSelect) directReportSelect.value = '';
+            }
+        }
 
-         document.addEventListener("DOMContentLoaded", async () => {
-             try {
-                 const res = await fetch('/Home/DatabaseStatus');
-             }
-             catch (e) {
+        function resetPreview()
+        {
+            const questionsList = document.getElementById('questionsList');
+            if (questionsList) questionsList.innerHTML = '';
 
-             }
-         })
+            const previewSection = document.querySelector('[id*="preview"]');
+            if (previewSection) previewSection.innerHTML = '';
+        }
 
-         // Flag to show preview only after first typing
+        function updateDisplay()
+        {
+            const isFormForMe = subjectSelfRadio.checked;
 
-         const availableQuestions = @Html.Raw(JsonSerializer.Serialize(Model.AvailableQuestions));
+            if (managerInfoSection) managerInfoSection.style.display = isFormForMe ? 'block' : 'none';
 
-         const initialFirst = '@(currentdirectReportGivenName)';
-         const initialLast = '@(currentdirectReportSurName)';
-         const initialEmail = '@(currentdirectReportEmail)';
+            resetPreview();
 
-         const addedQuestions = [];
-         let instanceCounter = 0;
+            if (isFormForMe)
+            {
+                if (directReportSelect) directReportSelect.value = '';
+                document.getElementById('displayName').textContent = currentUserName;
+                document.getElementById('displayEmail').textContent = currentUserEmail;
+            }
+        }
 
-         function updateQuestionsPreview() {
-             previewWrapper.classList.remove('d-none');
-             emptyPlaceholder.classList.remove('d-none');
+        if (subjectSelfRadio) subjectSelfRadio.addEventListener('change', updateDisplay), console.log("subjectSelfRadio changed");
+        if (subjectDirectRadio) subjectDirectRadio.addEventListener('change', updateDisplay), console.log("subjectDirectRadio changed");
 
-             //questionsPreview.innerHTML = '';
-             if (addedQuestions.length === 0)
-             {
-                previewQuestions.classList.add('d-none');
-                return;
-             }
+        if (directReportSelect)
+        {
+            directReportSelect.addEventListener('change', function() {
+                resetPreview();
 
-             previewQuestions.classList.remove('d-none');
-             addedQuestions.forEach(question, idx => {
-                 const item = document.createElement('div');
-                 item.className = 'mb-2';
-                 item.innerHTML = `<strong>${question.label}:</strong> ${question.value || '<em>(no answer)</em>'}`;
-                 previewQuestions.appendChild(item);
-             });
-         }
+                if (this.value)
+                {
+                    const selectedOption = this.options[this.selectedIndex];
+                    const displayName = selectedOption.getAttribute('data-display');
+                    const email = selectedOption.getAttribute('data-email');
+
+                    displayName.textContent = displayName || 'Unknown';
+                    displayEmail.textContent = email || 'no-email';
+                }
+                else
+                {
+                    displayName.textContent = '-- Select a direct report --';
+                    displayEmail.textContent = '-- Select a direct report --';
+                }
+            });
+        }
+        updateDisplay();
+        resetUserInfo();
+
+        document.getElementById("directReportSelect").disabled = true;
+
+        document.addEventListener("DOMContentLoaded", function () {
+           document.getElementById("subjectSelf").addEventListener("change", function () {
+               if (this.checked)
+               {
+                   document.getElementById("directReportSelect").disabled = true;
+                   document.getElementById("directReportSelect").selectedIndex = 0;
+               }
+               console.log("fired");
+           })
+       
+           if (document.getElementById("subjectDirect"))
+           {
+               document.getElementById("subjectDirect").addEventListener("change", function () {
+                   if (this.checked)
+                   {
+                      document.getElementById("directReportSelect").disabled = false;
+                   }
+               })
+           }
+        })
+       
+        document.addEventListener("DOMContentLoaded", async () => {
+            try {
+                const res = await fetch('/Home/DatabaseStatus');
+            }
+            catch (e) {
+
+            }
+        })
+
+        // Flag to show preview only after first typing
+
+        const availableQuestions = @Html.Raw(JsonSerializer.Serialize(Model.AvailableQuestions));
+
+        const initialFirst = '@(currentdirectReportGivenName)';
+        const initialLast = '@(currentdirectReportSurName)';
+        const initialEmail = '@(currentdirectReportEmail)';
+
+        const addedQuestions = [];
+        let instanceCounter = 0;
+
+        function updateQuestionsPreview() {
+            previewWrapper.classList.remove('d-none');
+            emptyPlaceholder.classList.remove('d-none');
+
+            //questionsPreview.innerHTML = '';
+            if (addedQuestions.length === 0)
+            {
+               previewQuestions.classList.add('d-none');
+               return;
+            }
+
+            previewQuestions.classList.remove('d-none');
+            addedQuestions.forEach(question, idx => {
+                const item = document.createElement('div');
+                item.className = 'mb-2';
+                item.innerHTML = `<strong>${question.label}:</strong> ${question.value || '<em>(no answer)</em>'}`;
+                previewQuestions.appendChild(item);
+            });
+        }
 
          /*async function checkDatabaseStatus()
          {
