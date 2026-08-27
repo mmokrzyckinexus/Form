@@ -233,12 +233,93 @@
         const directReportSelect = document.getElementById('directReportSelect');
         const displayName = document.getElementById('displayName');
         const displayEmail = document.getElementById('displayEmail');
+        const managerNameSpan = document.getElementById('managerName');
+        const managerEmailSpan = document.getElementById('managerEmail');
 
         const currentUserName = document.getElementById('displayName').textContent;
         const currentUserEmail = document.getElementById('displayEmail').textContent;
 
         const originalName = displayName.textContent;
         const originalEmail = displayEmail.textContent;
+        const originalManagerName = managerNameSpan ? managerNameSpan.textContent.trim() : '';
+        const originalManagerEmail = managerEmailSpan ? managerEmailSpan.textContent.trim() : '';
+
+        function showCurrentUser()
+        {
+            if (displayName) displayName.textContent = originalName || '';
+            if (displayEmail) displayEmail.textContent = originalEmail || '';
+            if (managerNameSpan) managerNameSpan.textContent = originalManagerName || 'Not Available';
+            if (managerEmailSpan) managerEmailSpan.textContent = originalManagerEmail || 'Not Available';
+            if (managerInfoSection) managerInfoSection.style.display = 'block';
+        }
+
+        function clearForDirectReportNoSelection()
+        {
+            if (displayName) displayName.textContent = '-- Select a direct report --';
+            if (displayEmail) displayEmail.textContent = '-- Select a direct report --';
+            if (managerNameSpan) managerNameSpan.textContent = 'Not Available';
+            if (managerEmailSpan) managerEmailSpan.textContent = 'Not Available';
+            if (managerInfoSection) managerInfoSection.style.display = 'block';
+        }
+
+        function onSubjectChange()
+        {
+            const isSelf = subjectSelfRadio && subjectSelfRadio.checked;
+            if (directReportSelect) directReportSelect.disabled = !(isSelf && directReportSelect.options.length > 1);
+            if (isSelf)
+            {
+                showCurrentUser();
+                if (directReportSelect) directReportSelect.selectedIndex = 0;
+                else
+                {
+                    if (!directReportSelect || !directReportSelect.value) clearForDirectReportNoSelection();
+                }
+            }
+        }
+
+        async function fetchAndApplyUserDetails(userId)
+        {
+            try
+            {
+                const response = await fetch(`/Home/UserDetails/${encodeURIComponent(userId)}`);
+                if (!response) throw new Error('Failed to fetch user details');
+                const userData = await response.json();
+                if (displayName) displayName.textContent = userData.userDisplayName || 'Unknown';
+                if (displayEmail) displayEmail.textContent = userData.userEmail || 'no-email';
+                if (managerNameSpan) managerNameSpan.textContent = userData.managerName || 'Not Available';
+                if (managerEmailSpan) managerEmailSpan.textContent = userData.managerEmail || 'Not Available';
+                if (managerInfoSection) managerInfoSection.style.display = 'block';
+            }
+            catch (error)
+            {
+                console.error('Error fetching user details:', error);
+                if (displayName) displayName.textContent = '-- Select a direct report --';
+                if (displayEmail) displayEmail.textContent = '-- Select a direct report --';
+                if (managerNameSpan) managerNameSpan.textContent = 'Not Available';
+                if (managerEmailSpan) managerEmailSpan.textContent = 'Not Available';
+                if (managerInfoSection) managerInfoSection.style.display = 'block';
+            }
+        }
+
+        if (subjectSelfRadio) subjectSelfRadio.addEventListener('change', onSubjectChange);
+        if (subjectDirectRadio) subjectDirectRadio.addEventListener('change', onSubjectChange);
+
+        if (directReportSelect)
+        {
+            directReportSelect.addEventListener('change', function() {
+                if (subjectSelfRadio && subjectSelfRadio.checked) return;
+                if (this.value)
+                {
+                    fetchAndApplyUserDetails(this.value);
+                }
+                else
+                {
+                    clearForDirectReportNoSelection();
+                }
+            });
+        }
+
+        onSubjectChange();
 
         function resetUserInfo()
         {
@@ -300,11 +381,21 @@
 
                     displayName.textContent = displayName || 'Unknown';
                     displayEmail.textContent = email || 'no-email';
+
+                    const managerNameSpan = document.getElementById('managerName');
+                    const managerEmailSpan = document.getElementById('managerEmail');
+                    if (managerNameSpan) managerNameSpan.textContent = 'Not Available';
+                    if (managerEmailSpan) managerEmailSpan.textContent = 'Not Available';
                 }
                 else
                 {
                     displayName.textContent = '-- Select a direct report --';
                     displayEmail.textContent = '-- Select a direct report --';
+
+                    const managerNameSpan = document.getElementById('managerName');
+                    const managerEmailSpan = document.getElementById('managerEmail');
+                    if (managerNameSpan) managerNameSpan.textContent = 'Not Available';
+                    if (managerEmailSpan) managerEmailSpan.textContent = 'Not Available';
                 }
             });
         }

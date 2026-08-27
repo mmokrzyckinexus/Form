@@ -145,6 +145,68 @@ namespace Form.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> UserDetails(string id)
+        {
+            try
+            {
+                var user = await _graphClient.Users[id].GetAsync(requestConfiguration =>
+                {
+                    requestConfiguration.QueryParameters.Select = new[]
+                    {
+                        "displayName",
+                        "givenName",
+                        "mail",
+                        "userPrincipalName",
+                        "surname"
+                    };
+                });
+                DirectoryObject manager = null;
+                try
+                {
+                    manager = await _graphClient.Users[id].Manager.GetAsync(requestConfiguration =>
+                    {
+                        requestConfiguration.QueryParameters.Select = new[]
+                        {
+                            "id",
+                            "displayName",
+                            "userPrincipalName",
+                            "givenName",
+                            "surname",
+                            "mail"
+                        };
+                    });
+
+                }
+                catch { }
+
+                string managerName = null, managerEmail = null;
+                if (manager is User managerUser)
+                {
+                    managerName = managerUser.DisplayName;
+                    managerEmail = managerUser.UserPrincipalName ?? managerUser.Mail;
+                }
+                else if (manager is OrgContact oc)
+                {
+                    managerName = oc.DisplayName;
+                    managerEmail = oc.Mail;
+                }
+
+                return Ok(new
+                {
+                    userDisplayName = user.DisplayName,
+                    userEmail = user.UserPrincipalName ?? user.Mail,
+                    managerName = managerName,
+                    managerEmail = managerEmail
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching user information.");
+                return StatusCode(500, new { Error = "An error occurred while fetching the user information." });
+            }
+        }
+
         /*private static void ConfigurationRequest(RequestConfiguration<MeRequestBuilderGetRequestConfiguration> config)
         {
             config.QueryParameters.Select = new[] { "displayName", "givenName", "mail", "userPrincipalName" };
