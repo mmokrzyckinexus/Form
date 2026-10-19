@@ -88,7 +88,7 @@
                 </div>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <strong>Selected User Info</strong>
+                        <strong>Filled Out by User Requesting or Changing Access</strong>
                     </div>
                     <div class="card-body" style="min-height: 150px;">
                         <div class="row border rounded h-100">
@@ -99,6 +99,30 @@
                             <div class="col-md-10">
                                 <span class="card-text mb-1"><strong>Email:</strong></span>
                                 <span class="flex-grow-1 text-truncate" id="displayEmail">@Model.AzureUser.User.UserPrincipalName</span>
+                            </div>
+                            <div class="col-md-10">
+                                <span class="card-text mb-1"><strong>Title:</strong></span>
+                                <span class="flex-grow-1 text-truncate" id="displayTitle">@Model.AzureUser.User.JobTitle</span>
+                            </div>
+                            <div class="col-md-10">
+                                <span class="card-text mb-1"><strong>Department:</strong></span>
+                                <span class="flex-grow-1 text-truncate" id="displayDepartment">@Model.AzureUser.User.Department</span>
+                            </div>
+                            <div class="col-md-10">
+                                <span class="card-text mb-1"><strong>Primary Work Location:</strong></span>
+                                <span class="flex-grow-1 text-truncate" id="displayLocation">@Model.AzureUser.User.OfficeLocation</span>
+                            </div>
+                            <div class="col-md-10 mt-2">
+                                <label class="form-label mb-1"><strong>Signature:</strong></label>
+                                <div>
+                                    <canvas id="signatureCanvas" class="border" width="400" height="120" style="touch-action: none; max-width:100%;"></canvas>
+                                </div>
+                                <div class="mt-2">
+                                    <button type="button" id="clearSignature" class="btn btn-sm btn-secondary">Clear</button>
+                                    <button type="button" id="saveSignature" class="btn btn-sm btn-primary">Save</button>
+                                    <span class="form-text ms-2">Click Save to store an image data URL in the hidden field.</span>
+                                </div>
+                                <input type="hidden" id="signatureDataUrl" name="SignatureDataUrl" />
                             </div>
                             <div class="col-12" id="managerInfoSection" style="display: block;">
                                 <hr class="my-2">
@@ -142,29 +166,29 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Add a question</label>
+                    <!--<label class="form-label">Add a question</label>
                     <select id="questionSelect" class="form-select">
                         <option value="">-- Add a question --</option>
                         @foreach (var question in Model.AvailableQuestions)
                         {
-                            <option value="@question.Id">@question.Label</option>
+                            <option value="@question.Section">@question.Section</option>
                         }
-                    </select>
+                    </select>-->
 
                     <label class="form-label">Choose a section to add</label>
                     <select id="sectionSelect" class="form-select" multiple size="6">
-                        <option value="">-- Choose a section --</option>
                         @foreach (var question in Model.AvailableQuestions)
                         {
-                            <option value="@question.Id">@question.Label</option>
+                            <option value="@question.Section">@question.Section</option>
                         }
                     </select>
                     <div class="mt-2">
-                        <button type="button" class="btn btn-sm btn-primary" onclick="addSection(document.getElementById('sectionSelect').value)">Add section</button>
+                        <!--<button type="button" class="btn btn-sm btn-primary" onclick="addSection(document.getElementById('sectionSelect').value)">Add section</button>-->
+                        <button type="button" class="btn btn-sm btn-primary" onclick="window.addSection()">Add section</button>
                     </div>
                 </div>
 
-                <button type="button" onclick="addQuestion(document.getElementById('questionSelect').value)">Add question</button>
+                <!--<button type="button" onclick="addQuestion(document.getElementById('questionSelect').value)">Add question</button>
 
                 <div class="form-text mb-2">
                     Each question creates an answer input. Typing an answer will update the mapped preview field in realtime.
@@ -173,41 +197,22 @@
                 <div class="d-flex gap-2">
                     <button id="btnResetQuestions" class="btn btn-secondary">Reset questions</button>
                     <button id="btnClearAnswers" class="btn btn-outline-secondary">Clear answers</button>
-                </div>
+                </div>-->
             </div>
         </div>
 
-        <div class="col-md-7" style="overflow:auto;">
-            <div id="previewWrapper" class="card d-none">
-                <div class="card-header">
-                    <strong>Live Preview (changes not saved)</strong>
-                    <span id="unsavedDot" class="badge bg-warning text-dark ms-2">Unsaved</span>
-                </div>
-                <div class="card-body">
-                    <h3 id="previewName"></h3>
-                    <p><strong>Email:</strong> <span id="previewEmail"></span></p>
-                    <p><strong>Summary:</strong></p>
-                    <div id="previewBio" class="border rounded p-2" style="min-height:80px;"></div>
-
-                    <div id="previewQuestions" class="mt-4 d-none">
-                        <h5>Questions & Answers</h5>
-                        <div id="questionsPreviewList" class="border rounded p-2" style="min-height:100px; background-color: #f8f9fa;">
-                            <!-- dynamically rendered Q&A pairs will go here -->
-                        </div>
-                    </div>
-
-                    <div id="docPreview" class="mt-3" style="height:50vh;">
-                        <!--<iframe id="wordFrame" src="@ViewBag.word" style="width:100%; height:100%; border:1px solid #ddd; display:none"></iframe>-->
+        <div id="previewWrapper" class="card d-none">
+            <div class="card-body">
+                <div id="previewQuestions" class="mt-4 d-none" style="background-color: red">
+                    <div id="questionsPreviewList"
+                         class="border rounded p-2"
+                         style="min-height:100px; background-color:black;">
                     </div>
                 </div>
             </div>
+        </div>
         
-            <div id="emptyPlaceholder" class="card text-muted text-center p-5">
-                <div class="card-body">
-                    <p class="mb-0">Preview will appear as you start typing in the form.</p>
-                </div>
-            </div>
-        </div>
+        <div id="emptyPlaceholder" class="card text-muted text-center p-5"> </div>
     </div>
 </div>
 
@@ -233,21 +238,91 @@
         const directReportSelect = document.getElementById('directReportSelect');
         const displayName = document.getElementById('displayName');
         const displayEmail = document.getElementById('displayEmail');
+        const displayTitle = document.getElementById('displayTitle');
         const managerNameSpan = document.getElementById('managerName');
         const managerEmailSpan = document.getElementById('managerEmail');
 
         const currentUserName = document.getElementById('displayName').textContent;
         const currentUserEmail = document.getElementById('displayEmail').textContent;
+        const currentUserTitle = document.getElementById('displayTitle').textContent;
 
         const originalName = displayName.textContent;
         const originalEmail = displayEmail.textContent;
+        const originalTitle = displayTitle.textContent;
         const originalManagerName = managerNameSpan ? managerNameSpan.textContent.trim() : '';
         const originalManagerEmail = managerEmailSpan ? managerEmailSpan.textContent.trim() : '';
+
+        (function()
+        {
+            const canvas = document.getElementById('signatureCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 2;
+            let drawing = false;
+            let lastX = 0;
+            let lastY = 0;
+
+            function getPos(e)
+            {
+                const rect = canvas.getBoundingClientRect();
+                if (e.touches && e.touches.length > 0)
+                {
+                    const t = e.touches[0];
+                    return { x: t.clientX - rect.left, y: t.clientY - rect.top };
+                }
+                return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+            }
+
+            function start(e)
+            {
+                e.preventDefault();
+                drawing = true;
+                const pos = getPos(e);
+                lastX = pos.x;
+                lastY = pos.y;
+            }
+            function move(e)
+            {
+                if (!drawing) return;
+                e.preventDefault();
+                const pos = getPos(e);
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(pos.x, pos.y);
+                ctx.stroke();
+                lastX = pos.x;
+                lastY = pos.y;
+            }
+            function end()
+            {
+                drawing = false;
+            }
+
+            canvas.addEventListener('mousedown', start);
+            canvas.addEventListener('mousemove', move);
+            canvas.addEventListener('mouseup', end);
+            canvas.addEventListener('mouseout', end);
+            canvas.addEventListener('touchstart', start);
+            canvas.addEventListener('touchmove', move);
+            canvas.addEventListener('touchend', end);
+
+            document.getElementById('clearSignature').addEventListener('click', () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                document.getElementById('signatureDataUrl').value = '';
+            });
+
+            document.getElementById('saveSignature').addEventListener('click', () => {
+                document.getElementById('signatureDataUrl').value = canvas.toDataURL('image/png');
+                alert('Signature saved!');
+            });
+        })();
 
         function showCurrentUser()
         {
             if (displayName) displayName.textContent = originalName || '';
             if (displayEmail) displayEmail.textContent = originalEmail || '';
+            if (displayTitle) displayTitle.textContent = originalTitle || '';
             if (managerNameSpan) managerNameSpan.textContent = originalManagerName || 'Not Available';
             if (managerEmailSpan) managerEmailSpan.textContent = originalManagerEmail || 'Not Available';
             if (managerInfoSection) managerInfoSection.style.display = 'block';
@@ -257,6 +332,7 @@
         {
             if (displayName) displayName.textContent = '-- Select a direct report --';
             if (displayEmail) displayEmail.textContent = '-- Select a direct report --';
+            if (displayTitle) displayTitle.textContent = '-- Select a direct report --';
             if (managerNameSpan) managerNameSpan.textContent = 'Not Available';
             if (managerEmailSpan) managerEmailSpan.textContent = 'Not Available';
             if (managerInfoSection) managerInfoSection.style.display = 'block';
@@ -286,6 +362,7 @@
                 const userData = await response.json();
                 if (displayName) displayName.textContent = userData.userDisplayName || 'Unknown';
                 if (displayEmail) displayEmail.textContent = userData.userEmail || 'no-email';
+                if (displayTitle) displayTitle.textContent = userData.userTitle || 'Not Available';
                 if (managerNameSpan) managerNameSpan.textContent = userData.managerName || 'Not Available';
                 if (managerEmailSpan) managerEmailSpan.textContent = userData.managerEmail || 'Not Available';
                 if (managerInfoSection) managerInfoSection.style.display = 'block';
@@ -295,6 +372,7 @@
                 console.error('Error fetching user details:', error);
                 if (displayName) displayName.textContent = '-- Select a direct report --';
                 if (displayEmail) displayEmail.textContent = '-- Select a direct report --';
+                if (displayTitle) displayTitle.textContent = '-- Select a direct report --';
                 if (managerNameSpan) managerNameSpan.textContent = 'Not Available';
                 if (managerEmailSpan) managerEmailSpan.textContent = 'Not Available';
                 if (managerInfoSection) managerInfoSection.style.display = 'block';
@@ -334,6 +412,7 @@
             {
                 displayName.textContent = '-- Select a direct report --';
                 displayEmail.textContent = '-- Select a direct report --';
+                displayTitle.textContent = '-- Select a direct report --';
                 console.log('subjectDirectRadio');
                 if (managerInfoSection) managerInfoSection.style.display = 'none';
                 if (directReportSelect) directReportSelect.value = '';
@@ -362,6 +441,7 @@
                 if (directReportSelect) directReportSelect.value = '';
                 document.getElementById('displayName').textContent = currentUserName;
                 document.getElementById('displayEmail').textContent = currentUserEmail;
+                document.getElementById('displayTitle').textContent = currentUserTitle;
             }
         }
 
@@ -378,9 +458,11 @@
                     const selectedOption = this.options[this.selectedIndex];
                     const displayName = selectedOption.getAttribute('data-display');
                     const email = selectedOption.getAttribute('data-email');
+                    const title = selectedOption.getAttribute('data-title');
 
                     displayName.textContent = displayName || 'Unknown';
                     displayEmail.textContent = email || 'no-email';
+                    displayTitle.textContent = title || 'Not Available';
 
                     const managerNameSpan = document.getElementById('managerName');
                     const managerEmailSpan = document.getElementById('managerEmail');
@@ -391,6 +473,7 @@
                 {
                     displayName.textContent = '-- Select a direct report --';
                     displayEmail.textContent = '-- Select a direct report --';
+                    displayTitle.textContent = '-- Select a direct report --';
 
                     const managerNameSpan = document.getElementById('managerName');
                     const managerEmailSpan = document.getElementById('managerEmail');
@@ -436,18 +519,20 @@
 
         // Flag to show preview only after first typing
 
-        const availableQuestions = @Html.Raw(JsonSerializer.Serialize(Model.AvailableQuestions));
+        //const availableQuestions = @Html.Raw(JsonSerializer.Serialize(Model.AvailableQuestions));
 
         const initialFirst = '@(currentdirectReportGivenName)';
         const initialLast = '@(currentdirectReportSurName)';
         const initialEmail = '@(currentdirectReportEmail)';
 
-        const addedQuestions = [];
+        //const addedQuestions = [];
         let instanceCounter = 0;
 
-        function updateQuestionsPreview() {
-            previewWrapper.classList.remove('d-none');
-            emptyPlaceholder.classList.remove('d-none');
+        function updateQuestionsPreview()
+        {
+            console.log('questions updated:', addedQuestions);
+            //previewWrapper.classList.remove('d-none');
+            //emptyPlaceholder.classList.remove('d-none');
 
             //questionsPreview.innerHTML = '';
             if (addedQuestions.length === 0)
@@ -457,7 +542,9 @@
             }
 
             previewQuestions.classList.remove('d-none');
-            addedQuestions.forEach(question, idx => {
+            const questionsPreviewList = document.getElementById('questionsPreviewList');
+            if (questionsPreviewList) questionsPreviewList.innerHTML = '';
+            addedQuestions.forEach((question, idx) => {
                 const item = document.createElement('div');
                 item.className = 'mb-2';
                 item.innerHTML = `<strong>${question.label}:</strong> ${question.value || '<em>(no answer)</em>'}`;
@@ -554,8 +641,416 @@
              html += `<input type="hidden" name="Question[${def.id}].target" value="${def.target}" />`;
              container.insertAdjacentHTML('beforeend', html);
          }*/
+        
+        const availableQuestions = @Html.Raw(JsonSerializer.Serialize(Model.AvailableQuestions));
+        //console.log('available: ', availableQuestions);
+        let addedQuestions = [];
 
-         let increment = 1;
+        /*window.addSection = function(sectionName) {
+            const selection = document.getElementById('sectionSelect');
+            let selectedNames = [];
+            console.log(selection);
+            if (sectionName)
+            {
+                selectedNames = [sectionName];
+            }
+            else if (selection)
+            {
+                selectedNames = Array.from(selection.selectedOptions).map(option => option.value).filter(v => v);
+            }
+
+            if (selectedNames.length === 0)
+            {
+                console.warn('Nothing in selectedNames');
+                return;
+            }
+
+            const questionContainer = document.getElementById('questionsList');
+            if (!questionContainer) return console.error('questionsList container not found');
+
+            selectedNames.forEach(name => {
+                const sectionDef = (availableQuestions || []).find(s => (s.Section === name) || (s.section === name));
+                const sectionId = `section_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`;
+
+                const section = document.createElement('div');
+                section.className = 'mb-4 border rounded p-3 bg-light';
+                section.id = sectionId;
+
+                const header = document.createElement('div');
+                header.className = 'd-flex justify-content-between align-items-center mb-2';
+                const title = document.createElement('strong');
+                title.textContent = sectionDef?.Section ?? name;
+                const removeButton = document.createElement('button');
+                removeButton.type = 'button';
+                removeButton.className = 'btn btn-sm btn-outline-danger';
+                removeButton.textContent = 'Remove Section';
+                removeButton.addEventListener('click', () => {
+                    for (let i = addedQuestions.length - 1; i >= 0; i--)
+                    {
+                        if (addedQuestions[i].sectionId === sectionId)
+                        {
+                            addedQuestions.splice(i, 1);
+                        }
+                    }
+                    section.remove();
+                    updateQuestionsPreview();
+                });
+                header.appendChild(title);
+                header.appendChild(removeButton);
+                section.appendChild(header);
+
+                const questionsHolder = document.createElement('div');
+                questionsHolder.className = 'section-questions';
+                section.appendChild(questionsHolder);
+                console.log('Section div:', section);
+                questionContainer.appendChild(section);
+
+                const questionsInSection = sectionDef?.Questions || [];
+                questionsInSection.forEach(question => {
+                    window.addQuestionToSection(question.Id ?? question.id ?? question.Id);
+                    
+                    const maybeLast = questionContainer.lastElementChild;
+                    if (maybeLast)
+                    {
+                        questionsHolder.appendChild(maybeLast);
+                        const instanceId = maybeLast.dataset.instanceId;
+                        if (instanceId)
+                        {
+                            const rec = addedQuestions.find(r => r.instanceId === instanceId);
+                            if (rec) rec.sectionId = sectionId;
+                        }
+                    }
+                });
+                updateQuestionsPreview();
+            });
+        };
+        
+        document.querySelectorAll('button[onclick^="addQuestion"]').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const selection = document.getElementById('questionSelect');
+                if (selection) window.addQuestion(selection.value);
+            });
+        });*/
+
+        window.addQuestion = function(id) {
+            if (!id) return;
+            let def = null;
+            for (const sec of availableQuestions || [])
+            {
+                def = (sec.Questions || []).find(q => (q.Id && q.Id === id) || (q.Id && q.Id === id));
+                if (def) break;
+            }
+            if (!def) def = availableQuestions.flatMap(question => question.Questions || []).find(q => (q.Id && q.Id === id) || (q.id && q.id === id));
+            if (!def) return;
+
+            instanceCounter++;
+            const container = document.getElementById('questionsList');
+            if (!container) return console.error('questionsList not found');
+            
+            const wrapper = document.createElement('div');
+            wrapper.className = 'mb-3 border rounded p-2 bg-white';
+            wrapper.dataset.defId = id;
+            wrapper.dataset.instanceId = `instance_${instanceCounter}`;
+            
+            const questionRecord = {
+                instanceId: wrapper.dataset.instanceId,
+                label: def.Label ?? def.label ?? 'Question',
+                questionId: def.Id ?? def.id,
+                target: def.Target ?? def.target,
+                type: def.Type ?? def.type,
+                sectionId: null
+            };
+            
+            const title = document.createElement('label');
+            title.className = 'mb-2';
+            title.innerHTML = `<strong class="h6 m-0">${questionRecord.label}</strong>`;
+            wrapper.appendChild(title);
+
+            function setTargetValue(value)
+            {
+                questionRecord.value = value;
+                if (def.Target)
+                {
+                    if (typeof renderPreviewFromAnswers === 'function')
+                    {
+                        window.answers = window.answers || {};
+                        window.answers[def.Target] = value;
+                        renderPreviewFromAnswers();
+                    }
+                }
+                updateQuestionsPreview();
+            }
+            
+            const typeVal = (typeof def.Type === 'number') ? def.Type : (def.Type || '').toString().toLowerCase();
+            const options = def.Questions || [];
+
+            if (typeVal === 'text' || typeVal === 0)
+            {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'form-control';
+                input.addEventListener('input', e => setTargetValue(e.target.value));
+                wrapper.appendChild(input);
+                input.placeholder = 'Type answer...';
+            }
+            else if (typeVal === 'singleselect' || typeVal === 1)
+            {
+                const select = document.createElement('select');
+                select.className = 'form-select';
+                select.appendChild(new Option('-- choose --', ''));
+                options.forEach(opt => select.appendChild(new Option(opt, opt)));
+                select.addEventListener('change', e => setTargetValue(e.target.value));
+                wrapper.appendChild(select);
+            }
+            else if (typeVal === 'multiselect' || typeVal === 2)
+            {
+                const select = document.createElement('select');
+                select.className = 'form-select';
+                select.multiple = true;
+                options.forEach(opt => select.appendChild(new Option(opt, opt)));
+                select.addEventListener('change', () => {
+                    const vals = Array.from(select.selectedOptions).map(o => o.value);
+                    setTargetValue(vals.join(', '));
+                });
+                wrapper.appendChild(select);
+            }
+            else if (typeVal === 'checkbox' || typeVal === 3)
+            {
+                options.forEach((option, i) => {
+                    const checkboxDiv = document.createElement('div');
+                    checkboxDiv.className = 'form-check';
+                    const cb = document.createElement('input');
+                    cb.type = 'checkbox';
+                    cb.className = 'form-check-input';
+                    cb.id = `checkbox_${instanceCounter}_${i}`;
+                    cb.value = option;
+                    cb.addEventListener('change', () => {
+                        const checkedValues = Array.from(wrapper.querySelectorAll('input[type=checkbox]:checked')).map(c => c.value);
+                        questionRecord.values = checkedValues;
+                        questionRecord.value = checkedValues.join(', ');
+                        updateQuestionsPreview();
+                    });
+                    
+                    const label = document.createElement('label');
+                    label.className = 'form-check-label ms-1';
+                    label.textContent = option;
+                    label.htmlFor = cb.id;
+                    checkboxDiv.appendChild(cb);
+                    checkboxDiv.appendChild(label);
+                    wrapper.appendChild(checkboxDiv);
+                });
+            }
+            else
+            {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.className = 'form-control';
+                input.placeholder = 'Type answer...';
+                input.addEventListener('input', e => setTargetValue(e.target.value));
+                wrapper.appendChild(input);
+            }
+
+            /*const removeButton = document.createElement('button');
+            removeButton.type = 'button';
+            removeButton.className = 'btn btn-sm btn-outline-danger mt-2';
+            removeButton.textContent = 'Remove';
+            removeButton.addEventListener('click', () => {
+                const index = addedQuestions.findIndex(q => q.instanceId === questionRecord.instanceId);
+                if (index >= 0) addedQuestions.splice(index, 1);
+                wrapper.remove();
+                updateQuestionsPreview();
+            });
+            
+            wrapper.appendChild(removeButton);*/
+
+            addedQuestions.push(questionRecord);
+
+            container.appendChild(wrapper);
+            updateQuestionsPreview();
+        };
+
+        window.addSection = function (sectionName)
+        {
+            const selection = document.getElementById('sectionSelect');
+            let selectedNames = [];
+
+            if (sectionName)
+            {
+                selectedNames = [sectionName];
+            }
+            else if (selection)
+            {
+                selectedNames = Array.from(selection.selectedOptions).map(option => option.value).filter(v => v);
+            }
+
+            if (selectedNames.length === 0) return console.warn('No sections selected');
+
+            const container = document.getElementById('questionsList');
+            if (!container) return console.error('questionsList container not found');
+
+            selectedNames.forEach(name => {
+                console.log("available questions: ", availableQuestions);
+                const sectionDef = (availableQuestions || []).find(s => (s.Section === name) || (s.section === name));
+                const sectionId = `section_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`;
+
+                const section = document.createElement('div');
+                section.className = 'mb-4 border rounded p-3 bg-light';
+                section.id = sectionId;
+
+                const header = document.createElement('div');
+                header.className = 'd-flex justify-content-between align-items-center mb-2';
+                const title = document.createElement('strong');
+                title.textContent = sectionDef?.Section ?? name;
+                const removeSectionButton = document.createElement('button');
+                removeSectionButton.type = 'button';
+                removeSectionButton.className = 'btn btn-outline-danger btn-sm';
+                removeSectionButton.textContent = 'Remove Section';
+                removeSectionButton.addEventListener('click', () => {
+                    for (let i = addedQuestions.length - 1; i >= 0; i--) {
+                        if (addedQuestions[i].sectionId === sectionId)
+                        {
+                            addedQuestions.splice(i, 1);
+                        }
+                    }
+                    section.remove();
+                    updateQuestionsPreview();
+                });
+                header.appendChild(title);
+                header.appendChild(removeSectionButton);
+                section.appendChild(header);
+
+                const listHolder = document.createElement('div');
+                listHolder.className = 'section-questions';
+                section.appendChild(listHolder);
+                
+                container.appendChild(section);
+
+                const questionsInSection = sectionDef?.Questions || [];
+                questionsInSection.forEach(question => {
+                    window.addQuestion(question.Id ?? question.id ?? question.Id);
+                    const maybeLast = container.lastElementChild;
+                    if (!maybeLast) return;
+
+                    const hasTitle = maybeLast.querySelector('.question-title, strong.h6, .form-label');
+                    if (!hasTitle)
+                    {
+                        const titleEl = document.createElement('div');
+                        titleEl.className = 'mb-2 question-title';
+                        titleEl.innerHTML = `<strong class="h6 m-0">${question.Label ?? question.label ?? 'Question'}</strong>`;
+                        maybeLast.insertBefore(titleEl, maybeLast.firstChild);
+                    }
+
+                    listHolder.appendChild(maybeLast);
+                    const instanceId = maybeLast.dataset.instanceId;
+                    if (instanceId)
+                    {
+                        const rec = addedQuestions.find(r => r.instanceId === instanceId);
+                        if (rec) rec.sectionId = sectionId;
+                    }
+                });
+
+                updateQuestionsPreview();
+            })
+        };
+
+        document.querySelectorAll('button[onclick^="addQuestion"]').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const selection = document.getElementById('questionSelect');
+                if (selection) window.addQuestion(selection.value);
+            });
+        });
+
+        /*window.addQuestionToSection = function(question, sectionId, parentContainer)
+        {
+            const instanceId = `question_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
+            const questionDiv = renderQuestions(question, instanceId, sectionId);
+            parentContainer.appendChild(questionDiv);
+            console.log('parent constainer', parentContainer);
+
+            addedQuestions.push({
+                instanceId: instanceId,
+                label: question.Label,
+                questionId: question.Id,
+                target: question.Target,
+                type: question.Type,
+                sectionId: sectionId
+            });
+        };*/
+
+        /*function renderQuestions(questions, instanceId, sectionId)
+        {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'mb-3';
+            questionDiv.dataset.instanceId = instanceId;
+            questionDiv.dataset.sectionId = sectionId;
+            console.log('question div:', questionDiv);
+
+            const label = document.createElement('label');
+            label.className = 'form-label';
+            label.textContent = questions.label;
+            console.log('label:', label);
+            questionDiv.appendChild(label);
+
+            console.log('question div2:', questionDiv);
+            console.log('quesions:', questions);
+            switch (questions.Type)
+            {
+                case 'Text':
+                case 0:
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'form-control';
+                    input.dataset.instanceId = instanceId;
+                    questionDiv.appendChild(input);
+                    break;
+
+                case 'Checkbox':
+                case 3:
+                    if (questions.Questions)
+                    {
+                        questions.Questions.forEach((option, idx) => {
+                            const checkboxDiv = document.createElement('div');
+                            checkboxDiv.className = 'form-check';
+                            const checkId = `${questions.Id}_check_${idx}`;
+                            checkboxDiv.innerHTML = `<input class="form-check-input" type="checkbox" value="${option}" id="${checkId}" data-instance-id="${instanceId}" />
+                                                     <label class="form-check-label" for="${checkId}">${option}</label>`;
+                            questionDiv.appendChild(checkboxDiv);
+                        });
+                    }
+                    break;
+
+                case 'SingleSelect':
+                case 1:
+                case 'MultiSelect':
+                case 2:
+                    const select = document.createElement('select');
+                    select.className = 'form-select';
+                    select.multiple = (question.type === 'MultiSelect');
+                    select.dataset.instanceId = instanceId;
+
+                    const emptyOption = document.createElement('option');
+                    emptyOption.value = '';
+                    emptyOption.textContent = '-- Select --';
+                    select.appendChild(emptyOption);
+
+                    if (questions.Questions)
+                    {
+                        questions.Questions.forEach(option => {
+                            const optionEl = document.createElement('option');
+                            optionEl.value = option;
+                            optionEl.textContent = option;
+                            select.appendChild(optionEl);
+                        });
+                    }
+                    questionDiv.appendChild(select);
+                    break;
+            }
+            console.log('question div3:', questionDiv);
+            return questionDiv;
+        }*/
+
+        /* let increment = 1;
          window.addSection = function(id) {
              if (!id) return;
              const selection = document.getElementById('sectionSelect');
@@ -569,7 +1064,7 @@
              const firstId = selectedIds[0];
              const firstDef = (availableQuestions || []).find(q => (q.id && q.id === firstId) || (q.Id && q.Id === firstId));
              //sectionName = firstDef ? firstDef.Label || firstDef.label || `Section (${selectedIds.length} questions)` : `Section (${selectedIds.length} questions)`;
-             sectionName = `Section ${increment++}`;
+            sectionName = id;
              console.log(increment);
 
              const sectionId = `section_${Date.now()}`;
@@ -623,10 +1118,10 @@
                  }
              });
              updateQuestionsPreview();
-         };
+         };*/
          
 
-         window.addQuestion = function(id) {
+         /*window.addQuestion = function(id) {
              if (!id) return;
              const def = availableQuestions.find(question => (question.id && question.id === id) || (question.Id && question.Id === id));
              if (!def) return;
@@ -767,9 +1262,9 @@
              wrapper.appendChild(remove);
              
              questionsList.appendChild(wrapper);
-        };
+        };*/
 
-        window.addQuestion = window.addQuestion;
+        //window.addQuestion = window.addQuestion;
 
         // Optional: Clear answers / reset UI wiring
         /*document.getElementById('btnClearAnswers')?.addEventListener('click', () => {
@@ -850,7 +1345,7 @@
     </script>
 }
 
-<div style="display:flex; height:90vh; gap:12px;">
+<!--<div style="display:flex; height:90vh; gap:12px;">
     <h2>Name: @(Model.AzureUser.User.GivenName)</h2>
     @if (Model.AzureUser.Manager is Microsoft.Graph.Models.User user)
     {
@@ -878,4 +1373,4 @@
             }
         }
     </ol>
-</div>
+</div>-->

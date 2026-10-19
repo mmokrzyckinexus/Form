@@ -125,3 +125,4 @@ D:\coding\github\Form\obj\Debug\net8.0\refint\Form.dll
 D:\coding\github\Form\obj\Debug\net8.0\Form.pdb
 D:\coding\github\Form\obj\Debug\net8.0\Form.genruntimeconfig.cache
 D:\coding\github\Form\obj\Debug\net8.0\ref\Form.dll
+D:\coding\github\Form\bin\Debug\net8.0\questions.json
