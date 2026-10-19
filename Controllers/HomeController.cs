@@ -164,12 +164,11 @@ namespace Form.Controllers
                 var connectionString = _configuration.GetConnectionString("DefaultConnection");
                 using var connection = new SqlConnection(connectionString);
                 connection.Open();
-
                 ViewBag.DatabaseStatus = "Database connection successful.";
             }
-            catch (Exception ex)
+            catch
             {
-                _logger.LogError(ex, "Database connection failed.");
+                _logger.LogError("Database connection failed.");
                 ViewBag.DatabaseStatus = "Database connection failed.";
             }
 

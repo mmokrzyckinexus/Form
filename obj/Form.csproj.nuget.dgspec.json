@@ -54,43 +54,27 @@
           "dependencies": {
             "Microsoft.Data.SqlClient": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[7.1.1, )"
             },
             "Microsoft.Graph": {
               "target": "Package",
-              "version": "[6.2.0, )"
+              "version": "[6.8.0, )"
             },
             "Microsoft.Identity.Web": {
               "target": "Package",
-              "version": "[4.11.0, )"
+              "version": "[4.16.1, )"
             },
             "Microsoft.Identity.Web.GraphServiceClient": {
               "target": "Package",
-              "version": "[4.11.0, )"
+              "version": "[4.16.1, )"
             },
             "Microsoft.Identity.Web.UI": {
               "target": "Package",
-              "version": "[4.11.0, )"
+              "version": "[4.16.1, )"
             },
             "Microsoft.IdentityModel.Protocols.OpenIdConnect": {
               "target": "Package",
-              "version": "[8.19.1, )"
-            },
-            "Microsoft.Owin": {
-              "target": "Package",
-              "version": "[4.2.3, )"
-            },
-            "Microsoft.Owin.Host.SystemWeb": {
-              "target": "Package",
-              "version": "[4.2.3, )"
-            },
-            "Microsoft.Owin.Security.Cookies": {
-              "target": "Package",
-              "version": "[4.2.3, )"
-            },
-            "Microsoft.Owin.Security.OpenIdConnect": {
-              "target": "Package",
-              "version": "[4.2.3, )"
+              "version": "[8.23.0, )"
             }
           },
           "imports": [
@@ -112,11 +96,7 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
-=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.402/PortableRuntimeIdentifierGraph.json"
->>>>>>> c2704dc11292101e6920fd2901cee0be3eaa461d
         }
       }
     }
