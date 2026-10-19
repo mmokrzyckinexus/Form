@@ -1,0 +1,51 @@
+[
+  {
+    "Section": "Lincolnshire Regulated Enterprise System Access",
+    "Questions": [
+      {
+        "Label": "DicksonOne Environmentail Monitoring System",
+        "Type": "Checkbox",
+        "Questions": [
+          "Administrator",
+          "Read Only",
+          "Manage"
+        ]
+      },
+      {
+        "Label": "NEXUS-FMS02 (Oxygen Headspace): Lighthouse",
+        "Type": "SingleSelect",
+        "Questions": [
+          "Administrator",
+          "QA/QC User",
+          "R&D User"
+        ]
+      },
+      {
+        "Label": "LINCLAB-FTIR01 (Fourier-Transform Infrared Spectroscopy (FTIR)): ThermoFischer",
+        "Type": "SingleSelect",
+        "Questions": [
+          "Administrator",
+          "User"
+        ]
+      }
+    ]
+  },
+  {
+    "Section": "Email Distribution Lists and Shared Drive Access - Check All That Apply:",
+    "Questions": [
+      {
+        "Label": "Email Distribution Lists:",
+        "Type": "Text"
+      },
+      {
+        "Label": "Shared Drives - Check All That Apply:",
+        "Type": "Checkbox",
+        "Questions": [
+            "H:",
+            "H: (Human Resources)",
+            "P: (Public Lab)"
+        ]
+      }
+    ]
+  }
+]

@@ -14,6 +14,10 @@ using System.Threading.Tasks;
 using Microsoft.Graph.DeviceManagement.DeviceConfigurations.Item.GetOmaSettingPlainTextValueWithSecretReferenceValueId;
 using System.Text;
 using Microsoft.Data.SqlClient;
+using System.Text.Json;
+using System.IO;
+using System.Text.Json.Serialization;
+using Microsoft.Graph.Models.Security;
 
 namespace Form.Controllers
 {
@@ -23,38 +27,134 @@ namespace Form.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly GraphServiceClient _graphClient;
         private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _env;
 
-        readonly List<QuestionDefinitionModel> AvailableQuestions = new()
+        readonly List<SectionQuestionModel> AvailableQuestions = new();
+
+        /*readonly List<SectionQuestionModel> AvailableQuestions = new()
         {
             new()
             {
-                Label = "First Name",
-                Target = "firstName",
-                Type = QuestionType.Text
+                Section = "Lincolnshire Regulated Enterprise System Access",
+                Questions = new List<QuestionDefinitionModel>
+                {
+                    new()
+                    {
+                        Label = "DicksonOne Environmentail Monitoring System",
+                        Type = QuestionType.Checkbox,
+                        Questions = new() { "Administrator", "Read Only", "Manage" }
+                    },
+                    new()
+                    {
+                        Label = "NEXUS-FMS02 (Oxygen Headspace): Lighthouse",
+                        Type = QuestionType.SingleSelect,
+                        Questions = new() { "Administrator", "QA/QC User", "R&D User" }
+                    },
+                    new()
+                    {
+                        Label = "LINCLAB-FTIR01 (Fourier-Transform Infrared Spectroscopy (FTIR)): ThermoFischer",
+                        Type = QuestionType.SingleSelect,
+                        Questions = new() { "Administrator", "User" }
+                    }
+                }
             },
-
             new()
             {
-                Label = "Last Name",
-                Target = "lastName",
-                Type = QuestionType.Text
-            },
-
-            new()
-            {
-                Label = "App",
-                Target = "bio",
-                Type = QuestionType.Checkbox,
-                Questions = new() { "instrument1", "instrument2", "instrument3" }
+                Section = "Email Distribution Lists and Shared Drive Access - Check All That Apply:",
+                Questions = new List<QuestionDefinitionModel>
+                {
+                    new()
+                    {
+                        Label = "Email Distribution Lists:",
+                        Type = QuestionType.Text
+                    },
+                    new()
+                    {
+                        Label = "Shared Drives - Check All That Apply:",
+                        Type = QuestionType.Checkbox,
+                        Questions = new() { "H:", "H: (Human Resources)", "P: (Public Lab)" }
+                    }
+                }
             }
-        };
+        };*/
 
-        public HomeController(ILogger<HomeController> logger, GraphServiceClient graphClient, IConfiguration configuration)
+        public HomeController(ILogger<HomeController> logger, GraphServiceClient graphClient, IConfiguration configuration, IWebHostEnvironment env)
         {
             _logger = logger;
             _graphClient = graphClient;
             _configuration = configuration;
+            _env = env;
+
+            try
+            {
+                var configured = _configuration.GetSection("AvailableQuestions").Get<List<SectionQuestionModel>>();
+                if (configured != null && configured.Count > 0)
+                {
+                    AvailableQuestions.AddRange(configured);
+                    _logger.LogDebug("Loaded {Count} sections from configuration.", configured.Count);
+                }
+                else
+                {
+                    _logger.LogWarning("No AvailableQuestions found in configuration (appsettings.json).");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to load AvailableQuestions from configuration.");
+            }
+
+            /*try
+            {
+                var candidate = new[]
+                {
+                    Path.Combine(_env.ContentRootPath, "questions.json")
+                }.Where(p => !string.IsNullOrEmpty(p)).Distinct();
+
+                string found = null;
+                foreach (var path in candidate)
+                {
+                    _logger.LogInformation("Checking for questions.json at: {Path}", path);
+                    if (System.IO.File.Exists(path))
+                    {
+                        found = path;
+                        break;
+                    }
+                }
+                if (found == null)
+                {
+                    _logger.LogError("questions.json not found in any expected location.");
+                    throw new FileNotFoundException("questions.json not found.");
+                }
+
+                //var dataFile = Path.Combine(_env.ContentRootPath, "Data", "questions.json");
+                if (System.IO.File.Exists(found))
+                {
+                    var jsonData = System.IO.File.ReadAllText(found);
+                    _logger.LogInformation("questions.json size: {Length}", jsonData?.Length ?? 0);
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+
+                    options.Converters.Add(new JsonStringEnumConverter());
+                    List<SectionQuestionModel>? list = null;
+                    try
+                    {
+                        list = JsonSerializer.Deserialize<List<SectionQuestionModel>>(jsonData, options);
+                    }
+                    catch (JsonException jsonEx)
+                    {
+                        _logger.LogError(jsonEx, "JSON deserialization error for questions.json.");
+                        throw;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to load questions from JSON file.");
+            }*/
         }
+
 
         [AuthorizeForScopes(ScopeKeySection = "Graph:Scopes")]
         public async Task<IActionResult> Index()
@@ -81,7 +181,10 @@ namespace Form.Controllers
                     "givenName",
                     "mail",
                     "userPrincipalName",
-                    "surname"
+                    "surname",
+                    "jobTitle",
+                    "department",
+                    "officelocation"
                 };
             });
 
@@ -105,7 +208,7 @@ namespace Form.Controllers
                 _logger.LogError(ex, "Error fetching manager information: manager.");
             }
 
-            var directReportsList = new List<User>();
+            var directReportsList = new List<Microsoft.Graph.Models.User>();
             var directReport = await _graphClient.Me.DirectReports.GetAsync(requestConfiguration =>
             {
                 requestConfiguration.QueryParameters.Select = new[]
@@ -120,7 +223,7 @@ namespace Form.Controllers
             {
                 foreach (var report in directReport.Value)
                 {
-                    if (report is User userReport) directReportsList.Add(userReport);
+                    if (report is Microsoft.Graph.Models.User userReport) directReportsList.Add(userReport);
                 }
             }
 
@@ -181,7 +284,7 @@ namespace Form.Controllers
                 catch { }
 
                 string managerName = null, managerEmail = null;
-                if (manager is User managerUser)
+                if (manager is Microsoft.Graph.Models.User managerUser)
                 {
                     managerName = managerUser.DisplayName;
                     managerEmail = managerUser.UserPrincipalName ?? managerUser.Mail;

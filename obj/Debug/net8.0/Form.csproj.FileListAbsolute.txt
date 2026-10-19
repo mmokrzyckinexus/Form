@@ -125,6 +125,7 @@ D:\coding\github\Form\obj\Debug\net8.0\refint\Form.dll
 D:\coding\github\Form\obj\Debug\net8.0\Form.pdb
 D:\coding\github\Form\obj\Debug\net8.0\Form.genruntimeconfig.cache
 D:\coding\github\Form\obj\Debug\net8.0\ref\Form.dll
+<<<<<<< HEAD
 C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\appsettings.json
 C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Form.staticwebassets.runtime.json
@@ -252,3 +253,6 @@ C:\Users\mmokrzycki\source\repos\Form\obj\Debug\net8.0\refint\Form.dll
 C:\Users\mmokrzycki\source\repos\Form\obj\Debug\net8.0\Form.pdb
 C:\Users\mmokrzycki\source\repos\Form\obj\Debug\net8.0\Form.genruntimeconfig.cache
 C:\Users\mmokrzycki\source\repos\Form\obj\Debug\net8.0\ref\Form.dll
+=======
+D:\coding\github\Form\bin\Debug\net8.0\questions.json
+>>>>>>> c2704dc11292101e6920fd2901cee0be3eaa461d

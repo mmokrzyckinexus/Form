@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "EDJnLPF9BbQ=",
+=======
+  "dgSpecHash": "EdKAlLs49kI=",
+>>>>>>> c2704dc11292101e6920fd2901cee0be3eaa461d
   "success": true,
   "projectFilePath": "C:\\Users\\mmokrzycki\\source\\repos\\Form\\Form.csproj",
   "expectedPackageFiles": [
