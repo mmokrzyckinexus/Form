@@ -247,6 +247,28 @@ namespace Form.Controllers
             return View(model);
         }
 
+        [AuthorizeForScopes(ScopeKeySection = "Graph:Scopes")]
+        public async Task<IActionResult> ProfilePhoto()
+        {
+            try
+            {
+                var photo = await _graphClient.Me.Photo.Content.GetAsync();
+
+                if (photo is null)
+                {
+                    return NotFound("User photo not found.");
+                }
+
+                Response.Headers.CacheControl = "private, max-age=300";
+                return File(photo, "image/jpeg");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogDebug(ex, "Profile photo unavailable for the signed-in user.");
+                return NotFound();
+            }
+        }
+
         [HttpGet]
         public async Task<IActionResult> UserDetails(string id)
         {
