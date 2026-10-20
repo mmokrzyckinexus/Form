@@ -34,3 +34,20 @@ ol li {
     font-size: medium;
     font-weight: bold;
 }
+
+.document-header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    border-bottom: 2px solid #1f4e79;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.document-header h1
+{
+    margin: 0;
+    color: #1f4e79;
+    font-size: 1.5rem;
+}
