@@ -6,16 +6,18 @@
 <ul class="navbar-nav ms-auto">
     @if (User.Identity.IsAuthenticated)
     {
-        <li class="nav-item d-flex align-items-center gap-2">
-            <img src="@Url.Action("ProfilePhoto", "Home")" alt="Profile Photo" class="profile-photo" aria-hidden="true" onerror="this.style.display='none'"/>
-            
-            <div class="d-flex flex-column">
-                <span class="small fw-bold">@Model.AzureUser.User.DisplayName</span>
-                <a class="nav-link text-dark" asp-area="microsoftidentity" asp-controller="account" asp-action="signout">
+        <a class="nav-link" asp-area="microsoftidentity" asp-controller="account" asp-action="signout">
+            <li class="nav-item d-flex align-items-center gap-2 user-profile">
+
+                <img src="@Url.Action("ProfilePhoto", "Home")" alt="Profile Photo" class="profile-photo" aria-hidden="true" onerror="this.style.display='none'" />
+
+                <div class="d-flex flex-column">
+                    <h4 class="small fw-bold text-black">@Model.AzureUser.User.DisplayName</h4>
                     sign out
-                </a>
-            </div>
-        </li>
+                </div>
+            </li>
+        </a>
+        
         /*<li class="nav-item">
             <small class="text-muted">
                 @foreach (var c in User.Claims)
@@ -28,7 +30,7 @@
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="microsoftidentity" asp-controller="account" asp-action="signout">
+            <a class="nav-link text-dark" asp-area="microsoftidentity" asp-controller="account" asp-action="signin">
                 sign in
             </a>
         </li>
