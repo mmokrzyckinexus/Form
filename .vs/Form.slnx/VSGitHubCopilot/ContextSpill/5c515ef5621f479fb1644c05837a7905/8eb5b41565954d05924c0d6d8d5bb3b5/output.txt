@@ -1,0 +1,469 @@
+﻿## From full 'Debug' logs:
+'Form.exe' (CoreCLR: DefaultDomain): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Private.CoreLib.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Form.dll'. Symbols loaded.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Runtime.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'c:\program files\microsoft visual studio\18\community\common7\ide\extensions\microsoft\managedprojectsystem\HotReload\net6.0\Microsoft.AspNetCore.Watch.BrowserRefresh.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'c:\program files\microsoft visual studio\18\community\common7\ide\extensions\microsoft\managedprojectsystem\HotReload\net6.0\Microsoft.Extensions.DotNetDeltaApplier.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Linq.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Runtime.Loader.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Console.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Private.Uri.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.IO.Pipes.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Collections.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Runtime.InteropServices.RuntimeInformation.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Collections.Concurrent.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Threading.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Runtime.InteropServices.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Threading.Overlapped.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Security.AccessControl.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Security.Principal.Windows.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Security.Claims.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'c:\program files\microsoft visual studio\18\community\common7\ide\extensions\microsoft\web tools\projectsystem\net7.0\Microsoft.WebTools.ApiEndpointDiscovery.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\Microsoft\Web Tools\Browser Link\Microsoft.WebTools.BrowserLink.Net.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Hosting.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.DependencyInjection.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Logging.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Diagnostics.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Configuration.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Http.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Routing.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.ComponentModel.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Features.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Authentication.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Configuration.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Primitives.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Identity.Web.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Identity.Web.TokenAcquisition.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Identity.Web.GraphServiceClient.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Identity.Web.TokenCache.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Caching.Memory.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Authorization.Policy.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Mvc.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Mvc.Core.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Identity.Web.UI.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.HttpsPolicy.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.StaticFiles.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\PrivateAssemblies\Runtime\Microsoft.VisualStudio.Debugger.Runtime.NetCoreApp.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Hosting.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Hosting.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Hosting.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Configuration.EnvironmentVariables.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.FileProviders.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.FileProviders.Physical.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Configuration.FileExtensions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Options.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Logging.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Diagnostics.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Diagnostics.DiagnosticSource.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Configuration.Binder.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Configuration.Json.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Memory.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.IO.FileSystem.Watcher.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.ComponentModel.Primitives.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\Microsoft.Win32.Primitives.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Text.Json.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Text.Encoding.Extensions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Configuration.UserSecrets.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Razor.Runtime.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Logging.EventLog.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Logging.Configuration.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Options.ConfigurationExtensions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Logging.Console.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Logging.Debug.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Logging.EventSource.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Diagnostics.Tracing.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.DependencyInjection.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Server.Kestrel.Core.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Server.Kestrel.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Net.Quic.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Net.Sockets.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Net.Primitives.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\Microsoft.Win32.Registry.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Server.IIS.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Server.IISIntegration.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.FileProviders.Composite.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Text.Encodings.Web.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Runtime.Intrinsics.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Numerics.Vectors.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Http.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Mvc.ApiExplorer.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Mvc.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Connections.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.ObjectPool.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.HostFiltering.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.HttpOverrides.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Routing.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.ObjectModel.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Authentication.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Authentication.Core.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.DataProtection.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.DataProtection.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Cryptography.Internal.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.WebEncoders.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Identity.Web.Diagnostics.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Authentication.Cookies.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Http.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Net.Http.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Identity.Client.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Identity.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Identity.Web.Certificate.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Security.Cryptography.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Graph.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Kiota.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Graph.Core.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Caching.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Authorization.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Mvc.Razor.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Mvc.Cors.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Cors.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Mvc.DataAnnotations.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Mvc.ViewFeatures.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Linq.Expressions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Antiforgery.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Components.Endpoints.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Components.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Components.Web.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.JSInterop.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Mvc.TagHelpers.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Razor.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.Localization.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Http.Extensions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Threading.Thread.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\System.Diagnostics.EventLog.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Collections.Specialized.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.ComponentModel.TypeConverter.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Threading.ThreadPool.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\System.IO.Pipelines.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Net.Http.Headers.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Http.Features.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Runtime.Numerics.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Mvc.RazorPages.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Html.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Metadata.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Text.RegularExpressions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Azure.Core.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\System.ClientModel.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Components.Server.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Components.Authorization.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.Extensions.FileSystemGlobbing.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.ComponentModel.Annotations.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Xml.XDocument.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Private.Xml.Linq.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Private.Xml.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Reflection.Emit.Lightweight.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Reflection.Emit.ILGeneration.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Reflection.Primitives.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.IO.MemoryMappedFiles.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Runtime.Extensions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Diagnostics.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Diagnostics.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Collections.NonGeneric.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Net.Security.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+Microsoft.Hosting.Lifetime: Information: Now listening on: https://localhost:7184
+Microsoft.Hosting.Lifetime: Information: Now listening on: http://localhost:5113
+Microsoft.Hosting.Lifetime: Information: Now listening on: http://[::]:80
+Microsoft.Hosting.Lifetime: Information: Application started. Press Ctrl+C to shut down.
+Microsoft.Hosting.Lifetime: Information: Hosting environment: Development
+Microsoft.Hosting.Lifetime: Information: Content root path: C:\Users\mmokrzycki\source\repos\Form
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Threading.Channels.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Net.WebSockets.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Threading.Tasks.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Net.NameResolution.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Xml.ReaderWriter.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.Authentication.OAuth.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.IdentityModel.Validators.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.IdentityModel.LoggingExtensions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\netstandard.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Identity.Web.Certificateless.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.32\Microsoft.AspNetCore.WebUtilities.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'Anonymously Hosted DynamicMethods Assembly'. 
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Kiota.Http.HttpClientLibrary.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Json.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Text.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Form.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Multipart.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\runtimes\win\lib\net8.0\Microsoft.Data.SqlClient.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Data.Common.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Transactions.Local.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\Microsoft.CSharp.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Data.SqlClient.Internal.Logging.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Data.SqlClient.Extensions.Abstractions.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Diagnostics.Process.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Net.WebClient.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Diagnostics.StackTrace.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Text.Encoding.CodePages.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Diagnostics.TraceSource.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+Exception thrown: 'Microsoft.Data.SqlClient.SqlException' in Microsoft.Data.SqlClient.dll 'A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)'
+Form.Controllers.HomeController: Error: Database connection failed.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Std.UriTemplate.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+Microsoft.Identity.Web.CredentialsProvider: Information: [MsIdWeb] Attempting to load the credential from the CredentialDescription with Id=RedactedClientSecret=a7759e1647af49bca884cacaad3bb793 and Skip=False . 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:43Z - b010f355-ccd6-4a55-a45e-57edc7b96504] ==== GetAccounts started - GetAccountById ====
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:43Z - b010f355-ccd6-4a55-a45e-57edc7b96504] Account id filter: True
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:43Z - b010f355-ccd6-4a55-a45e-57edc7b96504] [Region discovery] Not using a regional authority. 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:43Z] Found 0 cache accounts and 0 broker accounts
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:43Z] Returning 0 accounts
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:43Z] MSAL MSAL.NetCore with assembly version '4.90.1.0'. CorrelationId(00000000-0000-0000-0000-000000000000)
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:43Z] === AcquireTokenSilent Parameters ===
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:43Z] LoginHint provided: False
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:43Z] Account provided: False
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:43Z] ForceRefresh: False
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:43Z] 
+=== Request Data ===
+Authority Provided? - True
+Scopes - user.read User.Read.All Group.Read.All Directory.Read.All Files.ReadWrite
+Extra Query Params Keys (space separated) - 
+ApiId - AcquireTokenSilent
+IsConfidentialClient - True
+SendX5C - False
+LoginHint ? False
+IsBrokerConfigured - False
+HomeAccountId - False
+CorrelationId - 00000000-0000-0000-0000-000000000000
+UserAssertion set: False
+LongRunningOboCacheKey set: False
+Region configured: 
+FMI Path: 
+Credential FMI Path: 
+
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:43Z] === Token Acquisition (SilentRequest) started:
+	 Scopes: user.read User.Read.All Group.Read.All Directory.Read.All Files.ReadWrite
+	Authority Host: login.microsoftonline.com
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Collections.Immutable.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.Reflection.Metadata.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+Microsoft.Identity.Web.TokenAcquisition: Error: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:43Z] Exception type: Microsoft.Identity.Client.MsalUiRequiredException
+, ErrorCode: user_null
+HTTP StatusCode 0
+CorrelationId 00000000-0000-0000-0000-000000000000
+To see full exception details, enable PII Logging. See https://aka.ms/msal-net-logging
+   at Microsoft.Identity.Client.Internal.Requests.Silent.SilentRequest.ExecuteAsync(CancellationToken cancellationToken)
+   at Microsoft.Identity.Client.Internal.Requests.RequestBase.<>c__DisplayClass13_1.<<RunAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.Identity.Client.Utils.StopwatchService.MeasureCodeBlockAsync(Func`1 codeBlock)
+   at Microsoft.Identity.Client.Internal.Requests.RequestBase.RunAsync(CancellationToken cancellationToken)
+
+Exception thrown: 'Microsoft.Identity.Web.MicrosoftIdentityWebChallengeUserException' in System.Private.CoreLib.dll 'IDW10502: An MsalUiRequiredException was thrown due to a challenge for the user. See https://aka.ms/ms-id-web/ca_incremental-consent. '
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\Microsoft.Bcl.Cryptography.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+Microsoft.Identity.Web.CredentialsProvider: Information: [MsIdWeb] Attempting to load the credential from the CredentialDescription with Id=RedactedClientSecret=a7759e1647af49bca884cacaad3bb793 and Skip=False . 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:44Z - d399abe5-b03c-439c-a859-b91656c16e1c] MSAL MSAL.NetCore with assembly version '4.90.1.0'. CorrelationId(d399abe5-b03c-439c-a859-b91656c16e1c)
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:44Z - d399abe5-b03c-439c-a859-b91656c16e1c] 
+=== Request Data ===
+Authority Provided? - True
+Scopes - 
+Extra Query Params Keys (space separated) - 
+ApiId - AcquireTokenByAuthorizationCode
+IsConfidentialClient - True
+SendX5C - False
+LoginHint ? False
+IsBrokerConfigured - False
+HomeAccountId - False
+CorrelationId - d399abe5-b03c-439c-a859-b91656c16e1c
+UserAssertion set: False
+LongRunningOboCacheKey set: False
+Region configured: 
+FMI Path: 
+Credential FMI Path: 
+
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:44Z - d399abe5-b03c-439c-a859-b91656c16e1c] === Token Acquisition (ConfidentialAuthCodeRequest) started:
+	 Scopes: 
+	Authority Host: login.microsoftonline.com
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:44Z - d399abe5-b03c-439c-a859-b91656c16e1c] [Instance Discovery] Instance discovery is enabled and will be performed
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:44Z - d399abe5-b03c-439c-a859-b91656c16e1c] [Region discovery] Not using a regional authority. 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:44Z - d399abe5-b03c-439c-a859-b91656c16e1c] Fetching instance discovery from the network from host login.microsoftonline.com. 
+System.Net.Http.HttpClient.Default.LogicalHandler: Information: Start processing HTTP request GET https://login.microsoftonline.com/common/discovery/instance?api-version=1.1&authorization_endpoint=https%3A%2F%2Flogin.microsoftonline.com%2F6aac7288-19a3-4543-9ce7-07d4cbe7c4fa%2Foauth2%2Fv2.0%2Fauthorize
+System.Net.Http.HttpClient.Default.ClientHandler: Information: Sending HTTP request GET https://login.microsoftonline.com/common/discovery/instance?api-version=1.1&authorization_endpoint=https%3A%2F%2Flogin.microsoftonline.com%2F6aac7288-19a3-4543-9ce7-07d4cbe7c4fa%2Foauth2%2Fv2.0%2Fauthorize
+System.Net.Http.HttpClient.Default.ClientHandler: Information: Received HTTP response headers after 52.1642ms - 200
+System.Net.Http.HttpClient.Default.LogicalHandler: Information: End processing HTTP request after 66.8794ms - 200
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - d399abe5-b03c-439c-a859-b91656c16e1c] Authority validation enabled? True. 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - d399abe5-b03c-439c-a859-b91656c16e1c] Authority validation - is known env? True. 
+System.Net.Http.HttpClient.Default.LogicalHandler: Information: Start processing HTTP request POST https://login.microsoftonline.com/6aac7288-19a3-4543-9ce7-07d4cbe7c4fa/oauth2/v2.0/token
+System.Net.Http.HttpClient.Default.ClientHandler: Information: Sending HTTP request POST https://login.microsoftonline.com/6aac7288-19a3-4543-9ce7-07d4cbe7c4fa/oauth2/v2.0/token
+System.Net.Http.HttpClient.Default.ClientHandler: Information: Received HTTP response headers after 175.0188ms - 200
+System.Net.Http.HttpClient.Default.LogicalHandler: Information: End processing HTTP request after 180.6094ms - 200
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - d399abe5-b03c-439c-a859-b91656c16e1c] Checking client info returned from the server..
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - d399abe5-b03c-439c-a859-b91656c16e1c] Saving token response to cache..
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - d399abe5-b03c-439c-a859-b91656c16e1c] [Region discovery] Not using a regional authority. 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - d399abe5-b03c-439c-a859-b91656c16e1c] [SaveTokenResponseAsync] Saving AT in cache and removing overlapping ATs...
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - d399abe5-b03c-439c-a859-b91656c16e1c] Looking for scopes for the authority in the cache which intersect with 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - d399abe5-b03c-439c-a859-b91656c16e1c] Intersecting scope entries count - 0
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - d399abe5-b03c-439c-a859-b91656c16e1c] Matching entries after filtering by user - 0
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - d399abe5-b03c-439c-a859-b91656c16e1c] [SaveTokenResponseAsync] Saving Id Token and Account in cache ...
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - d399abe5-b03c-439c-a859-b91656c16e1c] [SaveTokenResponseAsync] Saving RT in cache...
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - d399abe5-b03c-439c-a859-b91656c16e1c] 
+	=== Token Acquisition finished successfully:
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - d399abe5-b03c-439c-a859-b91656c16e1c]  AT expiration time: 10/19/2026 10:17:53 PM +00:00, scopes: Directory.Read.All email Files.ReadWrite Group.Read.All openid profile User.Read User.Read.All. source: IdentityProvider
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - d399abe5-b03c-439c-a859-b91656c16e1c] Fetched access token from host login.microsoftonline.com. 
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Users\mmokrzycki\source\repos\Form\bin\Debug\net8.0\System.Formats.Asn1.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+Microsoft.IdentityModel.LoggingExtensions.IdentityLoggerAdapter: Information: Microsoft.IdentityModel Version: 8.23.0.0. Date 10/19/2026 20:58:45. PII logging is OFF. See https://aka.ms/IdentityModel/PII for details. 
+IDX10242: Security token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]' has a valid signature.
+Microsoft.IdentityModel.LoggingExtensions.IdentityLoggerAdapter: Information: IDX10239: Lifetime of the token is valid.
+Microsoft.IdentityModel.LoggingExtensions.IdentityLoggerAdapter: Information: IDX10234: Audience Validated.Audience: '44a50954-5733-4ad0-8cbf-d7ea0873a0e6'
+Microsoft.IdentityModel.LoggingExtensions.IdentityLoggerAdapter: Information: IDX10245: Creating claims identity from the validated token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+Exception thrown: 'Microsoft.Data.SqlClient.SqlException' in Microsoft.Data.SqlClient.dll 'A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)'
+Form.Controllers.HomeController: Error: Database connection failed.
+Microsoft.Identity.Web.CredentialsProvider: Information: [MsIdWeb] Attempting to load the credential from the CredentialDescription with Id=RedactedClientSecret=a7759e1647af49bca884cacaad3bb793 and Skip=False . 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - 1bddf450-08e0-4378-a39e-67791e0194ed] ==== GetAccounts started - GetAccountById ====
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - 1bddf450-08e0-4378-a39e-67791e0194ed] Account id filter: True
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - 1bddf450-08e0-4378-a39e-67791e0194ed] [Region discovery] Not using a regional authority. 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - 1bddf450-08e0-4378-a39e-67791e0194ed] [Region discovery] Not using a regional authority. 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] Found 1 cache accounts and 0 broker accounts
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] Returning 1 accounts
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] MSAL MSAL.NetCore with assembly version '4.90.1.0'. CorrelationId(00000000-0000-0000-0000-000000000000)
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] === AcquireTokenSilent Parameters ===
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] LoginHint provided: False
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] Account provided: True
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] ForceRefresh: False
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] 
+=== Request Data ===
+Authority Provided? - True
+Scopes - user.read User.Read.All Group.Read.All Directory.Read.All Files.ReadWrite
+Extra Query Params Keys (space separated) - 
+ApiId - AcquireTokenSilent
+IsConfidentialClient - True
+SendX5C - False
+LoginHint ? False
+IsBrokerConfigured - False
+HomeAccountId - False
+CorrelationId - 00000000-0000-0000-0000-000000000000
+UserAssertion set: False
+LongRunningOboCacheKey set: False
+Region configured: 
+FMI Path: 
+Credential FMI Path: 
+
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] === Token Acquisition (SilentRequest) started:
+	 Scopes: user.read User.Read.All Group.Read.All Directory.Read.All Files.ReadWrite
+	Authority Host: login.microsoftonline.com
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] [Region discovery] Not using a regional authority. 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] Access token is not expired. Returning the found cache entry. [Current time (10/19/2026 20:58:45) - Expiration Time (10/19/2026 22:17:53 +00:00) - Extended Expiration Time (10/19/2026 22:17:53 +00:00)]
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] Returning access token found in cache. RefreshOn exists ? False
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] [Region discovery] Not using a regional authority. 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] 
+	=== Token Acquisition finished successfully:
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z]  AT expiration time: 10/19/2026 10:17:53 PM +00:00, scopes: Directory.Read.All email Files.ReadWrite Group.Read.All openid profile User.Read User.Read.All. source: Cache
+'Form.exe' (CoreCLR: clrhost): Loaded 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.32\System.IO.Compression.dll'. Skipped loading symbols. Module is optimized and the debugger option 'Just My Code' is enabled.
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - 9f240444-5afd-4eee-8f71-ac756c7384b2] ==== GetAccounts started - GetAccountById ====
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - 9f240444-5afd-4eee-8f71-ac756c7384b2] Account id filter: True
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - 9f240444-5afd-4eee-8f71-ac756c7384b2] [Region discovery] Not using a regional authority. 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z - 9f240444-5afd-4eee-8f71-ac756c7384b2] [Region discovery] Not using a regional authority. 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] Found 1 cache accounts and 0 broker accounts
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] Returning 1 accounts
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] MSAL MSAL.NetCore with assembly version '4.90.1.0'. CorrelationId(00000000-0000-0000-0000-000000000000)
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] === AcquireTokenSilent Parameters ===
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] LoginHint provided: False
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] Account provided: True
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] ForceRefresh: False
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] 
+=== Request Data ===
+Authority Provided? - True
+Scopes - user.read User.Read.All Group.Read.All Directory.Read.All Files.ReadWrite
+Extra Query Params Keys (space separated) - 
+ApiId - AcquireTokenSilent
+IsConfidentialClient - True
+SendX5C - False
+LoginHint ? False
+IsBrokerConfigured - False
+HomeAccountId - False
+CorrelationId - 00000000-0000-0000-0000-000000000000
+UserAssertion set: False
+LongRunningOboCacheKey set: False
+Region configured: 
+FMI Path: 
+Credential FMI Path: 
+
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] === Token Acquisition (SilentRequest) started:
+	 Scopes: user.read User.Read.All Group.Read.All Directory.Read.All Files.ReadWrite
+	Authority Host: login.microsoftonline.com
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] [Region discovery] Not using a regional authority. 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] Access token is not expired. Returning the found cache entry. [Current time (10/19/2026 20:58:45) - Expiration Time (10/19/2026 22:17:53 +00:00) - Extended Expiration Time (10/19/2026 22:17:53 +00:00)]
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] Returning access token found in cache. RefreshOn exists ? False
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] [Region discovery] Not using a regional authority. 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z] 
+	=== Token Acquisition finished successfully:
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:45Z]  AT expiration time: 10/19/2026 10:17:53 PM +00:00, scopes: Directory.Read.All email Files.ReadWrite Group.Read.All openid profile User.Read User.Read.All. source: Cache
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z - 5165d102-66d6-4ab0-ad25-f29356dbf347] ==== GetAccounts started - GetAccountById ====
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z - 5165d102-66d6-4ab0-ad25-f29356dbf347] Account id filter: True
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z - 5165d102-66d6-4ab0-ad25-f29356dbf347] [Region discovery] Not using a regional authority. 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z - 5165d102-66d6-4ab0-ad25-f29356dbf347] [Region discovery] Not using a regional authority. 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z] Found 1 cache accounts and 0 broker accounts
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z] Returning 1 accounts
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z] MSAL MSAL.NetCore with assembly version '4.90.1.0'. CorrelationId(00000000-0000-0000-0000-000000000000)
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z] === AcquireTokenSilent Parameters ===
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z] LoginHint provided: False
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z] Account provided: True
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z] ForceRefresh: False
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z] 
+=== Request Data ===
+Authority Provided? - True
+Scopes - user.read User.Read.All Group.Read.All Directory.Read.All Files.ReadWrite
+Extra Query Params Keys (space separated) - 
+ApiId - AcquireTokenSilent
+IsConfidentialClient - True
+SendX5C - False
+LoginHint ? False
+IsBrokerConfigured - False
+HomeAccountId - False
+CorrelationId - 00000000-0000-0000-0000-000000000000
+UserAssertion set: False
+LongRunningOboCacheKey set: False
+Region configured: 
+FMI Path: 
+Credential FMI Path: 
+
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z] === Token Acquisition (SilentRequest) started:
+	 Scopes: user.read User.Read.All Group.Read.All Directory.Read.All Files.ReadWrite
+	Authority Host: login.microsoftonline.com
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z] [Region discovery] Not using a regional authority. 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z] Access token is not expired. Returning the found cache entry. [Current time (10/19/2026 20:58:46) - Expiration Time (10/19/2026 22:17:53 +00:00) - Extended Expiration Time (10/19/2026 22:17:53 +00:00)]
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z] Returning access token found in cache. RefreshOn exists ? False
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z] [Region discovery] Not using a regional authority. 
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z] 
+	=== Token Acquisition finished successfully:
+Microsoft.Identity.Web.TokenAcquisition: Information: False MSAL 4.90.1.0 MSAL.NetCore .NET 8.0.32 Microsoft Windows 10.0.26200 [2026-10-19 20:58:46Z]  AT expiration time: 10/19/2026 10:17:53 PM +00:00, scopes: Directory.Read.All email Files.ReadWrite Group.Read.All openid profile User.Read User.Read.All. source: Cache
+Exception thrown: 'Microsoft.CSharp.RuntimeBinder.RuntimeBinderException' in System.Linq.Expressions.dll 'Cannot implicitly convert type 'string' to 'bool''
+Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware: Error: An unhandled exception has occurred while executing the request.
+
+Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: Cannot implicitly convert type 'string' to 'bool'
+   at CallSite.Target(Closure, CallSite, Object)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at AspNetCoreGeneratedDocument.Views_Home_Index.ExecuteAsync() in C:\Users\mmokrzycki\source\repos\Form\Views\Home\Index.cshtml:line 18
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+The thread '.NET TP Worker' (19288) has exited with code 0 (0x0).
+The thread '.NET TP Worker' (10336) has exited with code 0 (0x0).
+The thread '.NET TP Worker' (39264) has exited with code 0 (0x0).
+The thread '.NET TP Worker' (51712) has exited with code 0 (0x0).
