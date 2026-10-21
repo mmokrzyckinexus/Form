@@ -1,14 +1,21 @@
 ﻿@using System.Security.Principal
+@using Microsoft.Graph.Models
 
-<ul class="nav-bar">
+@model HomeIndexViewModel
+
+<ul class="navbar-nav ms-auto">
     @if (User.Identity.IsAuthenticated)
     {
-        <p class="nav-link text-dark">
-            Hello @User.FindFirst("givenname")
-        </p>
-        <a class="nav-link text-dark" asp-area="microsoftidentity" asp-controller="account" asp-action="signout">
-                sign out
-        </a>
+        <li class="nav-item d-flex align-items-center gap-2">
+            <img src="@Url.Action("ProfilePhoto", "Home")" alt="Profile Photo" class="profile-photo" aria-hidden="true" onerror="this.style.display='none'"/>
+            
+            <div class="d-flex flex-column">
+                <span class="small fw-bold">@Model.AzureUser.User.DisplayName</span>
+                <a class="nav-link text-dark" asp-area="microsoftidentity" asp-controller="account" asp-action="signout">
+                    sign out
+                </a>
+            </div>
+        </li>
         /*<li class="nav-item">
             <small class="text-muted">
                 @foreach (var c in User.Claims)

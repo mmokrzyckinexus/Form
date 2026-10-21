@@ -16,16 +16,20 @@
     var currentdirectReportGivenName = Model.AzureUser.User.GivenName ?? "";
     var currentdirectReportSurName = Model.AzureUser.User.Surname ?? "";
     var currentdirectReportEmail = Model.AzureUser.User.UserPrincipalName ?? "";
-
-    var databaseStatus = ViewBag.DatabaseStatus as string ?? "Database status unknown";
-    var databaseConnected = databaseStatus.Contains("successful", StringComparison.OrdinalIgnoreCase);
 }
 
-<span class="badge bg-dark border" title="@databaseStatus" aria-label="@databaseStatus">
-    <span class="@(databaseConnected ? "text-success" : "text-danger")" style="font-size: medium;" aria-hidden="true">
-        ●</span>
-    <span class="ms-1">@databaseStatus</span>
-</span>
+<header class="document-header">
+    <h1>FM-2001 Request Form</h1>
+    <span>@DateTime.Now.ToString("MMMM d, yyyy")</span>
+</header>
+
+<div class="text-center mb-3">
+    <span class="badge bg-light border border-success rounded-pill d-inline-flex align-items-center gap-1 py-0" title="@(ViewBag.DatabaseStatus as string ?? "Database status unknown")" aria-label="@(ViewBag.DatabaseStatus as string ?? "Database status unknown")">
+        <span class="@(ViewBag.DatabaseStatus.Contains("successful", StringComparison.OrdinalIgnoreCase) ?? false ? "text-success" : "text-danger")" style="font-size: medium; line-height: 1;" aria-hidden="true">
+            ●</span>
+        <span class="text-black lh-1">@(ViewBag.DatabaseStatus as string ?? "Database status unknown")</span>
+    </span>
+</div>
 
 <div class="text-center mb-3">
     <h1 class="display-1">Welcome</h1>
